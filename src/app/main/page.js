@@ -1,9 +1,5 @@
-
 import ClientMain from "../components/clientMain";
 import showDates from "@/lib/showDates";
-
-
-
 import getLatestEpisodes from '@/lib/latestEpisode';
 import { fetchSubstackPosts } from "@/lib/latestSubstack";
 
@@ -41,40 +37,32 @@ export async function generateMetadata() {
   };
 }
 
-
-
-
-
-
 export default async function Main() {
-  const shows = await showDates();
+  // Fetch server-side data
+  const [shows, latestEpisodesData] = await Promise.all([
+    showDates(),
+    getLatestEpisodes(),
+  ]);
 
+  // Substack posts with error handling
+  let posts = [];
+  try {
+    posts = await fetchSubstackPosts();
+  } catch (err) {
+    console.error('Failed to fetch Substack posts:', err);
+  }
 
-
-
-//  latestest podcast episodes
-  const latestEpisodesData = await getLatestEpisodes();
-
-  // latest Substack post
-const posts = await fetchSubstackPosts();
-
- 
-return (
-   <>
-<ClientMain
-    shows={shows}
-    latestFeed={posts}
-    latestEpisode={latestEpisodesData.episode}
-    podcastImage={latestEpisodesData.image || "/images/PBOGraphic.png"} // Fallback image
-    
-   
-  />
-  
-
-</>
-
+  // Return client component
+  return (
+    <ClientMain
+      shows={shows}
+      latestFeed={posts}
+      latestEpisode={latestEpisodesData.episode}
+      podcastImage={latestEpisodesData.image || "/images/PBOGraphic.png"}
+    />
   );
 }
+
 
 
 

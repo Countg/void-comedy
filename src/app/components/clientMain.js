@@ -17,16 +17,35 @@ import SubstackPosts from "./SubstackFeed";
 import { usePathname } from 'next/navigation';
 
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 
 
 
-export default function ClientMain({ shows, posts, latestFeed, products, latestEpisode, podcastImage, audioSrc }) {
+export default function ClientMain({ shows, fetchPostsClientSide, latestFeed, products, latestEpisode, podcastImage, audioSrc }) {
 
   const pathname = usePathname();
   const isLandingPage = pathname === '/'; // or whatever your route is
+   const [posts, setPosts] = useState([]);
+
+  // Fetch posts client-side if flag is set
+  useEffect(() => {
+    if (!fetchPostsClientSide) return;
+
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch('/api/substack'); // or your Supabase API route
+        const data = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.error('Failed to fetch posts client-side:', err);
+        setPosts([]);
+      }
+    };
+
+    fetchPosts();
+  }, [fetchPostsClientSide]);
 
 
 
@@ -63,10 +82,10 @@ export default function ClientMain({ shows, posts, latestFeed, products, latestE
 
   {/* All your content — now layered above glitch */}
   <div className="relative z-10 ">
-    <Navbar showDates={shows} feed={latestEpisode} zine={latestFeed} />
+    <Navbar showDates={shows} feed={latestEpisode} zine={posts} />
 
     <div className="w-full max-w-7xl mx-auto px-6 pt-16 pb-10 text-2xl sm:text-3xl">
-      <Header showDates={shows} feed={latestEpisode} zine={latestFeed} />
+      <Header showDates={shows} feed={latestEpisode} zine={posts} />
     </div>
 
     <div className="max-w-5xl mx-auto px-4 ">
@@ -89,7 +108,7 @@ export default function ClientMain({ shows, posts, latestFeed, products, latestE
         <ShowDates comedy={shows} />
 
         <div>
-         <SubstackPosts posts={latestFeed}/>
+         <SubstackPosts posts={posts}/>
            
         </div>
       </section>

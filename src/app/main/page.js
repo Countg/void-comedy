@@ -1,7 +1,6 @@
 import ClientMain from "../components/clientMain";
 import showDates from "@/lib/showDates";
 import getLatestEpisodes from '@/lib/latestEpisode';
-import { fetchSubstackPosts } from "@/lib/latestSubstack";
 
 export async function generateMetadata() {
   const latestEpisodesData = await getLatestEpisodes();
@@ -19,14 +18,7 @@ export async function generateMetadata() {
       description: 'Ontological dread through comedy, memes, and collapse.',
       url: 'https://gavinstephens.ca',
       type: 'website',
-      images: [
-        {
-          url: ogUrl,
-          width: 1200,
-          height: 630,
-          alt: latestEpisode?.title || 'Park Bench Ontology – Gavin Stephens',
-        },
-      ],
+      images: [{ url: ogUrl, width: 1200, height: 630, alt: latestEpisode?.title || 'Park Bench Ontology' }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -37,28 +29,20 @@ export async function generateMetadata() {
   };
 }
 
+export const revalidate = 60; // ISR every 60 seconds
+
 export default async function Main() {
-  // Fetch server-side data
   const [shows, latestEpisodesData] = await Promise.all([
     showDates(),
     getLatestEpisodes(),
   ]);
 
-  // Substack posts with error handling
-  let posts = [];
-  try {
-    posts = await fetchSubstackPosts();
-  } catch (err) {
-    console.error('Failed to fetch Substack posts:', err);
-  }
-
-  // Return client component
   return (
     <ClientMain
       shows={shows}
-      latestFeed={posts}
       latestEpisode={latestEpisodesData.episode}
       podcastImage={latestEpisodesData.image || "/images/PBOGraphic.png"}
+      fetchPostsClientSide={true} // flag to trigger client fetch
     />
   );
 }

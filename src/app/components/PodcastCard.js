@@ -53,7 +53,7 @@ return (
     {/* /* Description */} 
       <div className="text-base sm:text-lg text-white/90 leading-relaxed font-mono">
         <p className="mb-4">
-        <strong className="text-white">Park Bench Ontology</strong> is a lo-fi theory-meets-pop-culture podcast exploring internet semiotics, media collapse, and the performance of identity.
+        <strong className="text-white">Park Bench Ontology</strong> is a low-stakes existential crisis disguised as a comedy podcast for people quietly losing faith in the script of modern life. Each week, comedian and writer Gavin Stephens dissects the absurd machinery of capitalism and culture — from sitcoms to wealth inequality, Baudrillard to people who park in bike lanes — exposing the broken myths, invisible rules, and slow-motion collapse we all pretend isn’t happening.
         </p>
         <strong className="text-accent-orange">{title.replace(/^Episode\s*\d+\s*[:\-–]?\s*/i, '')}</strong>
         

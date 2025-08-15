@@ -1,13 +1,22 @@
 import Image from "next/image"
+import { FaTiktok, FaInstagram, FaYoutube,  } from 'react-icons/fa';
+import { SiLinktree, SiSubstack, SiBluesky } from "react-icons/si";
+
 
 export default function Footer(){
     return(
-        <footer className="bg-black/75 text-white border-t border-accentOrange mt-20">
+  <footer className="bg-black/75 text-white border-t border-accentOrange mt-20">
   <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
 
     {/* Logo + Motto */}
     <div className="flex flex-col items-start gap-4">
-      <Image src="/images/image-Bh3CIBq4Nlul53jbQSzYM3DN5mGWap.png" alt="Cartoon Face" as='image' width={500} height={500} className="w-14 h-14 rounded-full border-2 border-[#FF6719]" />
+      <Image
+        src="/images/image-Bh3CIBq4Nlul53jbQSzYM3DN5mGWap.png"
+        alt="Cartoon Face"
+        width={500}
+        height={500}
+        className="w-14 h-14 rounded-full border-2 border-[#FF6719]"
+      />
       <p className="text-sm text-white/70 font-mono">
         Broadcasting from the ruins of late capitalism.
       </p>
@@ -27,11 +36,62 @@ export default function Footer(){
     <div className="flex flex-col gap-2">
       <h3 className="text-accent-orange font-bold text-sm uppercase tracking-wider">Connect</h3>
       <a href="mailto:info@gavinstephens.com" className="text-white hover:text-accentOrange text-sm font-mono">Email Me</a>
-      <div className="flex gap-4 mt-2">
-        <a href="#" className="hover:text-accent-orange text-xl"><i className="fab fa-twitter"></i></a>
-        <a href="#" className="hover:text-accent-orange text-xl"><i className="fab fa-instagram"></i></a>
-        <a href="#" className="hover:text-accent-orange text-xl"><i className="fab fa-youtube"></i></a>
-        {/* Swap for real icons or components */}
+
+      <div className="flex flex-row gap-4 mt-2">
+        <a
+          href="https://bsky.app/profile/gavinbstephens.substack.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="BlueSky"
+          className="hover:text-accent-orange"
+        >
+          <SiBluesky size={24} />
+        </a>
+        <a
+          href="https://instagram.com/countgavin"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="hover:text-accent-orange"
+        >
+          <FaInstagram size={24} />
+        </a>
+        <a
+          href="https://www.youtube.com/@GavinStephens"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="YouTube"
+          className="hover:text-accent-orange"
+        >
+          <FaYoutube size={24} />
+        </a>
+          <a
+          href="https://linktr.ee/gavinstephens?ltsid=ff5d90b2-3a6c-472a-9ba6-91bcc8aedf2e"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="linktr"
+          className="hover:text-accent-orange"
+        >
+          <SiLinktree size={24} />
+        </a>
+          <a
+          href="https://gavinbstephens.substack.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Substack"
+          className="hover:text-accent-orange"
+        >
+          <SiSubstack size={24} />
+        </a>
+          <a
+          href="https://www.tiktok.com/@gavinstephens152"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+          className="hover:text-accent-orange"
+        >
+          <FaTiktok size={24} />
+        </a>
       </div>
     </div>
 
@@ -42,5 +102,7 @@ export default function Footer(){
     © 2025 Gavin Stephens · Park Bench Ontology
   </div>
 </footer>
+
+
     )
 }

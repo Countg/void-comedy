@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import { FaTiktok, FaInstagram, FaYoutube,  } from 'react-icons/fa';
 import { SiLinktree, SiSubstack, SiBluesky } from "react-icons/si";

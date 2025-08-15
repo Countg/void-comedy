@@ -108,7 +108,11 @@ export default function ClientMain({ shows, fetchPostsClientSide, latestFeed, pr
         <ShowDates comedy={shows} />
 
         <div>
-         <SubstackPosts posts={posts}/>
+        {posts.length === 0 ? (
+  <p className="text-sm text-white/70 font-mono">Loading posts...</p>
+) : (
+  posts.map(post => <SubstackPost key={post.id} post={post} />)
+)}
            
         </div>
       </section>

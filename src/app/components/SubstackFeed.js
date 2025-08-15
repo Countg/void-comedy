@@ -1,7 +1,4 @@
 
-
-
-
 import Image from 'next/image';
 import CardContainer from './CardContainer';
 

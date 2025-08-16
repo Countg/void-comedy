@@ -66,22 +66,26 @@ export default function AboutPage() {
       <p className="text-sm text-white/70 mb-4 max-w-md mx-auto md:mx-0 font-mono">
         Press, festivals, or media? Grab a PDF bio & promo photos below.
       </p>
-<a
-  href="/assets/Gavin_Stephens_Press_Kit.pdf"
-  download
-  className="inline-block px-6 py-3 border-2 border-accent-orange text-accent-orange hover:bg-accent-orange hover:text-dark-indigo transition-colors duration-200 rounded-lg font-mono text-sm tracking-wide mr-2"
-  aria-label="Download Gavin Stephens Press Bio PDF"
->
-  Download PDF Bio
-</a>
-<Link
-  href="https://photos.app.goo.gl/ZRbBUWwYVn31Q7s99"
-  target="_blank"
-  className="inline-block px-6 py-3 border-2 border-accent-orange text-accent-orange hover:bg-accent-orange hover:text-dark-indigo transition-colors duration-200 rounded-lg font-mono text-sm tracking-wide"
-  aria-label="Gavin Stephens Promo Photos"
->
-  Download Photos
-</Link>
+<div className="flex flex-col sm:flex-row sm:items-center gap-2">
+  <a
+    href="/assets/Gavin_Stephens_Press_Kit.pdf"
+    download
+    className="inline-block px-6 py-3 border-2 border-accent-orange text-accent-orange hover:bg-accent-orange hover:text-dark-indigo transition-colors duration-200 rounded-lg font-mono text-sm tracking-wide"
+    aria-label="Download Gavin Stephens Press Bio PDF"
+  >
+    Download PDF Bio
+  </a>
+  
+  <Link
+    href="https://photos.app.goo.gl/ZRbBUWwYVn31Q7s99"
+    target="_blank"
+    className="inline-block px-6 py-3 border-2 border-accent-orange text-accent-orange hover:bg-accent-orange hover:text-dark-indigo transition-colors duration-200 rounded-lg font-mono text-sm tracking-wide"
+    aria-label="Gavin Stephens Promo Photos"
+  >
+    Download Photos
+  </Link>
+</div>
+
 
     </div>
   </div>

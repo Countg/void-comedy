@@ -34,12 +34,28 @@ export async function generateMetadata() {
 export const revalidate = 60; // ISR every 60 seconds
 
 export default async function Main() {
-  const [shows, latestEpisodesData, posts] = await Promise.all([
-    showDates(),
-    getLatestEpisodes(),
-    fetchSubstackPosts()
-    
+  let shows = [];
+let latestEpisodesData = { episode: null, image: null };
+let posts = [];
+
+try {
+  [shows, latestEpisodesData, posts] = await Promise.all([
+    showDates().catch((err) => {
+      console.error("Failed to fetch shows:", err);
+      return [];
+    }),
+    getLatestEpisodes().catch((err) => {
+      console.error("Failed to fetch latest episode:", err);
+      return { episode: null, image: null };
+    }),
+    fetchSubstackPosts().catch((err) => {
+      console.error("Failed to fetch Substack posts:", err);
+      return [];
+    }),
   ]);
+} catch (err) {
+  console.error("Unexpected fetch error:", err);
+}
 
   return (
     <ClientMain

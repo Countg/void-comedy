@@ -33,9 +33,7 @@ export default function AboutPage() {
     {/* Full-Width Text Body Like a Newspaper */}
     <div className="max-w-5xl mx-auto text-left">
       <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
-        Gavin is a Caribbean-Canadian comic, writer, and cultural irritant. Born working class, raised by contradiction, and nominated for both a Juno and an AVN award, his résumé reads like satire — writing for CBC News one day, crafting a Seinfeld porn parody the next. But every bit of it is real, and it all points in one direction: exposing the absurdity, brutality, and symbolic violence that structure North American life.
-      </p>
-
+            Born working class and raised by contradiction, Gavin’s résumé reads like satire — writing for CBC News one day, dismantling sacred cows the next. His work points in one direction: exposing the absurdity, brutality, and symbolic violence that structure North American life.</p>
       <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
         His albums <span className="italic">All Inclusive Coma</span> (Juno-nominated) and <span className="italic">Park Bench Ontology</span> are blue-collar critiques wrapped in existential dread, calling bullshit on polite liberalism, market virtue, and nationalist performance art.
       </p>

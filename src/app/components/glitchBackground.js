@@ -1,36 +1,47 @@
-
 'use client';
-
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 export default function GlitchBackground() {
+  const pathname = usePathname();
+
+  // Make sure pathname is defined before using it
+  const isLandingPage = pathname === '/';
+
   return (
     <>
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="fixed inset-0 z-0 w-full h-full object-cover opacity-20 pointer-events-none hidden sm:block"
-      >
-        <source src="./videos/glitch-background.mp4" type="video/mp4" />
-      </video>
-         <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">
-        {/* RGB Noise Layer */}
+      {/* Background Video only on landing page */}
+      {isLandingPage && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="fixed inset-0 z-0 w-full h-full object-cover opacity-20 pointer-events-none hidden sm:block"
+        >
+          <source src="/videos/Glitch Background.webm" type="video/mp4" />
+        </video>
+      )}
+
+      {/* Global overlay layers (RGB noise, scanlines, grain) */}
+      <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">
         <div className="absolute w-full h-full animate-parallax-rgb will-change-transform" />
-
-        {/* Scanlines Layer */}
-        <div className="absolute w-full h-full bg-[url('/textures/scanlines.png')] opacity-10 mix-blend-overlay animate-parallax-slow" />
-
-        {/* Grain Flicker */}
-        <div className="absolute w-full h-full bg-[url('/textures/grain.jpg')] opacity-[0.03] animate-flicker" />
+        <div className="absolute w-full h-full vhs-scanlines opacity-30 mix-blend-overlay animate-parallax-slow" />
+        <div className="absolute w-full h-full bg-[url('/textures/grain.jpg')] opacity-[0.03] scanlines" />
       </div>
 
-     
+      {/* Backdrop Filter */}
+      <div
+        className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 transition-opacity ${
+          isLandingPage ? 'opacity-40' : 'opacity-15'
+        }`}
+      />
     </>
   );
 }
+
+
+
 
 
 

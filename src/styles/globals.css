@@ -362,3 +362,26 @@ body::before {
 }
 
 
+/* Example: faster, more noticeable horizontal flicker */
+@keyframes glitch-fast {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, 2px); }
+  80% { transform: translate(1px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-glitch-fast {
+  animation: glitch-fast 1s infinite;
+}
+
+/* Scanline flicker */
+@keyframes scanline {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.3; }
+}
+
+.animate-scanline {
+  animation: scanline 0.5s infinite;
+}

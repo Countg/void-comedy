@@ -1,6 +1,8 @@
 import ClientMain from "../components/clientMain";
 import showDates from "@/lib/showDates";
 import getLatestEpisodes from '@/lib/latestEpisode';
+import { fetchSubstackPosts } from "@/lib/latestSubstack";
+
 
 export async function generateMetadata() {
   const latestEpisodesData = await getLatestEpisodes();
@@ -32,9 +34,11 @@ export async function generateMetadata() {
 export const revalidate = 60; // ISR every 60 seconds
 
 export default async function Main() {
-  const [shows, latestEpisodesData] = await Promise.all([
+  const [shows, latestEpisodesData, posts] = await Promise.all([
     showDates(),
     getLatestEpisodes(),
+    fetchSubstackPosts()
+    
   ]);
 
   return (
@@ -42,7 +46,10 @@ export default async function Main() {
       shows={shows}
       latestEpisode={latestEpisodesData.episode}
       podcastImage={latestEpisodesData.image || "/images/PBOGraphic.png"}
-      fetchPostsClientSide={true} // flag to trigger client fetch
+      audioSrc={latestEpisodesData.audioSrc}
+      posts={posts}
+
+    
     />
   );
 }

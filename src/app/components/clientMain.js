@@ -14,7 +14,7 @@ import GlitchBackground from "./glitchBackground";
 import SubstackPosts from "./SubstackFeed";
 
 
-import { usePathname } from 'next/navigation';
+
 
 
 import { useEffect, useState } from "react";
@@ -23,31 +23,10 @@ import { useEffect, useState } from "react";
 
 
 
-export default function ClientMain({ shows, fetchPostsClientSide, latestFeed, products, latestEpisode, podcastImage, audioSrc }) {
-
-  const pathname = usePathname();
-  const isLandingPage = pathname === '/'; // or whatever your route is
-   const [posts, setPosts] = useState([]);
-
-  // Fetch posts client-side if flag is set
-  useEffect(() => {
-    if (!fetchPostsClientSide) return;
-
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch('/api/substack'); // or your Supabase API route
-        const data = await res.json();
-        setPosts(data);
-      } catch (err) {
-        console.error('Failed to fetch posts client-side:', err);
-        setPosts([]);
-      }
-    };
-
-    fetchPosts();
-  }, [fetchPostsClientSide]);
+export default function ClientMain({ shows, posts, latestFeed, products, latestEpisode, podcastImage, audioSrc }) {
 
 
+  
 
   
 
@@ -69,16 +48,9 @@ export default function ClientMain({ shows, fetchPostsClientSide, latestFeed, pr
 
     
    <div className="relative min-h-screen font-mono text-[#e6e6e6] bg-black overflow-x-hidden" id="home">
-      <div className="glitch-bg fixed inset-0 z-0 pointer-events-none" />
-  <div className="scanlines fixed inset-0 z-0 pointer-events-none" />
+   
   <GlitchBackground />
-
- 
-
-
-  <div className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 ${
-    isLandingPage ? "opacity-40" : "opacity-10"
-  }`} />
+    
 
   {/* All your content — now layered above glitch */}
   <div className="relative z-10 ">

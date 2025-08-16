@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 
 
 
+
 export default function Header({showDates, feed, zine}){
 
-  
+ 
   
   const latestShow = showDates.length > 0 ? showDates[0] : null;
   const latestPost = zine.length > 0 ? zine[0] : null;

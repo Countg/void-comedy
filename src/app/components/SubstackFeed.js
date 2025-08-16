@@ -21,21 +21,7 @@ export default function SubstackPosts({ posts }) {
         />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4">
-        {posts.map(({ title, link, date, excerpt }, i) => (
-          <a
-            key={i}
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block p-4 border border-white/10 hover:border-accent-orange transition-colors rounded-md"
-          >
-            <div className="text-lg font-semibold text-accent-orange">{title}</div>
-            <div className="text-sm text-white/70 mt-1">{date}</div>
-            <p className="text-white/80 mt-2 line-clamp-3">{excerpt?.slice(0, 120)}...</p>
-          </a>
-        ))}
-      </div>
+   
 
       <div className="mt-8 max-w-4xl mx-auto px-4 relative before:content-[''] before:absolute before:inset-0 before:bg-[url('/glitch.png')] before:opacity-5">
         <iframe

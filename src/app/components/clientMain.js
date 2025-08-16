@@ -13,9 +13,7 @@ import SignupForm from "./emailSignup";
 import GlitchBackground from "./glitchBackground";
 import SubstackPosts from "./SubstackFeed";
 
-
-
-
+import { usePathname } from 'next/navigation';
 
 import { useEffect, useState } from "react";
 
@@ -23,9 +21,12 @@ import { useEffect, useState } from "react";
 
 
 
-export default function ClientMain({ shows, posts, latestFeed, products, latestEpisode, podcastImage, audioSrc }) {
+export default function ClientMain({ shows, latestFeed, products, latestEpisode, podcastImage, audioSrc }) {
 
+  const pathname = usePathname();
 
+  // Make sure pathname is defined before using it
+  const isLandingPage = pathname === '/';
   
 
   
@@ -50,14 +51,20 @@ export default function ClientMain({ shows, posts, latestFeed, products, latestE
    <div className="relative min-h-screen font-mono text-[#e6e6e6] bg-black overflow-x-hidden" id="home">
    
   <GlitchBackground />
+  {/* Backdrop Filter */}
+      <div
+        className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 transition-opacity ${
+          isLandingPage ? 'opacity-40' : 'opacity-10'
+        }`}
+      />
     
 
   {/* All your content — now layered above glitch */}
   <div className="relative z-10 ">
-    <Navbar showDates={shows} feed={latestEpisode} zine={posts} />
+    <Navbar showDates={shows} feed={latestEpisode} />
 
     <div className="w-full max-w-7xl mx-auto px-6 pt-16 pb-10 text-2xl sm:text-3xl">
-      <Header showDates={shows} feed={latestEpisode} zine={posts} />
+      <Header showDates={shows} feed={latestEpisode}  />
     </div>
 
     <div className="max-w-5xl mx-auto px-4 ">
@@ -80,7 +87,7 @@ export default function ClientMain({ shows, posts, latestFeed, products, latestE
         <ShowDates comedy={shows} />
 
         <div>
-         <SubstackPosts posts={posts}/>
+         <SubstackPosts/>
            
         </div>
       </section>

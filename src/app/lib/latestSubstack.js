@@ -1,4 +1,3 @@
-import { getBaseUrl } from '../utils/baseUrl';
 
 let cachedPosts = null;
 let lastFetchTime = 0;
@@ -13,7 +12,7 @@ export async function fetchSubstackPosts() {
     }
   }
 
-  const baseUrl = getBaseUrl();
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'; 
   const res = await fetch(`${baseUrl}/api/substack`, { cache: 'no-store' });
 
   if (!res.ok) {

@@ -80,10 +80,7 @@ export default function ClientMain({ shows, latestFeed, products, latestEpisode,
         youtubeLink="https://www.youtube.com/@GavinStephens"
         audioSrc={latestEpisode?.enclosure?.link || "https://example.com/audio.mp3"}
       />
-
-      <ProjectCard />
-
-      <section className="mt-10 space-y-8 md:space-y-0 md:grid md:grid-cols-1 gap-8">
+       <section className="mt-10 space-y-8 md:space-y-0 md:grid md:grid-cols-1 gap-8">
         <ShowDates comedy={shows} />
 
         <div>
@@ -91,6 +88,10 @@ export default function ClientMain({ shows, latestFeed, products, latestEpisode,
            
         </div>
       </section>
+
+      <ProjectCard />
+
+     
 
       <AboutPage />
       <ShopCard productData={products} />

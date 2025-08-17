@@ -10,7 +10,7 @@ export default function SubstackPosts() {
   return (
   <CardContainer>
     <>
-      <h2 className="text-orange-500 font-bold text-xl mb-4">
+      <h2 className="text-orange-500 font-bold text-xl mb-4" id="zine">
         FROM THE SUBSTACK
       </h2>
       <motion.div

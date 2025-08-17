@@ -48,13 +48,13 @@ export default function ClientMain({ shows, latestFeed, products, latestEpisode,
   return (
 
     
-   <div className="relative min-h-screen font-mono text-[#e6e6e6] bg-black overflow-x-hidden" id="home">
+   <div className="relative min-h-screen font-mono text-[#e6e6e6] bg-black/40 overflow-x-hidden" id="home">
    
   <GlitchBackground />
   {/* Backdrop Filter */}
       <div
         className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 transition-opacity ${
-          isLandingPage ? 'opacity-40' : 'opacity-10'
+          isLandingPage ? 'opacity-40' : 'opacity-20'
         }`}
       />
     

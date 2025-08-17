@@ -27,15 +27,10 @@ export default function GlitchBackground() {
       <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">
         <div className="absolute w-full h-full animate-parallax-rgb will-change-transform" />
         <div className="absolute w-full h-full vhs-scanlines opacity-30 mix-blend-overlay animate-parallax-slow" />
-        <div className="absolute w-full h-full bg-[url('/textures/grain.jpg')] opacity-[0.03] scanlines" />
+        <div className="absolute w-full h-full bg-[url('/textures/staticOverlay.png')] opacity-[0.03] " />
       </div>
 
-      {/* Backdrop Filter */}
-      <div
-        className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 transition-opacity ${
-          isLandingPage ? 'opacity-40' : 'opacity-15'
-        }`}
-      />
+      
     </>
   );
 }

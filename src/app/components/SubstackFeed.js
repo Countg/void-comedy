@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import CardContainer from './CardContainer';
 
-export default function SubstackPosts({ posts }) {
-  if (!posts || posts.length === 0) return <p>No posts found.</p>;
+export default function SubstackPosts() {
+  
 
   return (
     <CardContainer>

@@ -33,9 +33,9 @@ export default function AboutPage() {
     {/* Full-Width Text Body Like a Newspaper */}
     <div className="max-w-5xl mx-auto text-left">
       <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
-            Born working class and raised by contradiction, Gavin’s résumé reads like satire — writing for CBC News one day, dismantling sacred cows the next. His work points in one direction: exposing the absurdity, brutality, and symbolic violence that structure North American life.</p>
+    Gavin Stephens is a Caribbean-Canadian comic, writer, and cultural irritant. Born working class and raised by contradiction, he makes comedy that can’t be branded, bought, or packaged — the kind that forces a system built on surface and spectacle to reckon with substance.</p>
       <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
-        His albums <span className="italic">All Inclusive Coma</span> (Juno-nominated) and <span className="italic">Park Bench Ontology</span> are blue-collar critiques wrapped in existential dread, calling bullshit on polite liberalism, market virtue, and nationalist performance art.
+        His Juno-nominated album <span className="italic text-accent-orange">All Inclusive Coma</span> proved that even when the industry doesn’t know what to do with you, undeniable work speaks for itself. With <span className="italic text-accent-orange">Park Bench Ontology</span> Gavin delivers blue-collar critiques wrapped in existential dread, calling bullshit on polite liberalism, market virtue, and nationalist performance art.
       </p>
 
       <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-12">

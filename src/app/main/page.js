@@ -36,10 +36,11 @@ export const revalidate = 60; // ISR every 60 seconds
 export default async function Main() {
   let shows = [];
 let latestEpisodesData = { episode: null, image: null };
+let latestFeed = [];
 
 
 try {
-  [shows, latestEpisodesData] = await Promise.all([
+  [shows, latestEpisodesData, latestFeed] = await Promise.all([
     showDates().catch((err) => {
       console.error("Failed to fetch shows:", err);
       return [];
@@ -47,6 +48,10 @@ try {
     getLatestEpisodes().catch((err) => {
       console.error("Failed to fetch latest episode:", err);
       return { episode: null, image: null };
+    }),
+    fetchSubstackPosts().catch((err) => {
+      console.error("Failed to fetch Substack posts:", err);
+      return [];
     }),
    
   ]);
@@ -60,6 +65,7 @@ try {
       latestEpisode={latestEpisodesData.episode}
       podcastImage={latestEpisodesData.image || "/images/PBOGraphic.png"}
       audioSrc={latestEpisodesData.audioSrc}
+      latestFeed={latestFeed}
     
 
     

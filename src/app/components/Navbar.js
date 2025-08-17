@@ -7,7 +7,7 @@ import Image from "next/image";
 import subtitles from "../lib/titleRotate"; // Assuming you have a subtitles.js file with the array
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Navbar({ showDates = [], feed }) {
+export default function Navbar({ showDates = [], feed, zine }) {
   const [index, setIndex] = useState(0);
 
   
@@ -39,11 +39,11 @@ const episodeText = `🎙️ New Episode: "${cleanTitle}"`;
       ? `📍 Live in ${latestShow.venue.city} ${formatDate(latestShow.datetime)}`
       : null;
 
-  // const latestPost = zine.length > 0 ? zine[0] : null;
-  // const zineTitle = latestPost?.title || 'New Post Coming Soon';
-  // const zineText = zineTitle ? `🧠 Zine drop: "${zineTitle}"` : null;
+  const latestPost = zine.length > 0 ? zine[0] : null;
+  const zineTitle = latestPost?.title 
+  const zineText = zineTitle ? `🧠 Zine drop: "${zineTitle}"` : null;
 
-  const tickerItems = [episodeText, liveShowText].filter(Boolean).join(" • ");
+  const tickerItems = [episodeText, liveShowText, zineText].filter(Boolean).join(" • ");
 
   return (
    <nav className="sticky top-0 z-50">

@@ -6,11 +6,12 @@ import { motion } from 'framer-motion';
 
 
 
-export default function Header({showDates, feed}){
+export default function Header({showDates, feed, zine}){
 
  
   
   const latestShow = showDates.length > 0 ? showDates[0] : null;
+    const latestPost = zine.length > 0 ? zine[0] : null;
 
    
 
@@ -69,12 +70,13 @@ export default function Header({showDates, feed}){
         <span className="ml-2 text-white font-extrabold sm:text-lg">TBA</span>
       )}
     </div>
-        {/* <div>
-      <span className="font-bold italic text-accent-orange">ZINE DROP:</span>
-      {latestPost ? (<span className="ml-2 text-white font-extrabold sm:text-lg">{latestPost.title}</span>) : (
-        <span className="ml-2 text-white font-extrabold sm:text-lg">TBA</span>
-      )}
-    </div> */}
+  {latestPost && (
+  <div>
+    <span className="font-bold italic text-accent-orange">ZINE DROP:</span>
+    <span className="ml-2 text-white font-extrabold sm:text-lg">{latestPost.title}</span>
+  </div>
+)}
+
     
   </div>
 </div>

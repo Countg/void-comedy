@@ -61,10 +61,10 @@ export default function ClientMain({ shows, latestFeed, products, latestEpisode,
 
   {/* All your content — now layered above glitch */}
   <div className="relative z-10 ">
-    <Navbar showDates={shows} feed={latestEpisode} />
+    <Navbar showDates={shows} feed={latestEpisode} zine={latestFeed} />
 
     <div className="w-full max-w-7xl mx-auto px-6 pt-16 pb-10 text-2xl sm:text-3xl">
-      <Header showDates={shows} feed={latestEpisode}  />
+      <Header showDates={shows} feed={latestEpisode} zine={latestFeed}  />
     </div>
 
     <div className="max-w-5xl mx-auto px-4 ">

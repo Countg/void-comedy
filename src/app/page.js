@@ -38,8 +38,28 @@ export async function generateMetadata() {
 }
 
 export default async function LandingPage() {
-  const shows = await showDates();
-  const latestEpisodesData = await getLatestEpisodes();
+    let shows = [];
+let latestEpisodesData = { episode: null, image: null };
+
+
+
+try {
+  [shows, latestEpisodesData] = await Promise.all([
+    showDates().catch((err) => {
+      console.error("Failed to fetch shows:", err);
+      return [];
+    }),
+    getLatestEpisodes().catch((err) => {
+      console.error("Failed to fetch latest episode:", err);
+      return { episode: null, image: null };
+    }),
+    
+   
+  ]);
+} catch (err) {
+  console.error("Unexpected fetch error:", err);
+}
+ 
 
   return (
     <>

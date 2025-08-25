@@ -21,7 +21,7 @@ export default function SocialSidebar() {
           label: 'Instagram',
         },
         {
-          href: 'https://www.youtube.com/@GavinStephens',
+          href: 'https://www.youtube.com/@ParkBenchOntology',
           icon: <FaYoutube />,
           label: 'YouTube',
         },

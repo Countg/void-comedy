@@ -58,7 +58,7 @@ export default function Footer(){
           <FaInstagram size={24} />
         </a>
         <a
-          href="https://www.youtube.com/@GavinStephens"
+          href="https://www.youtube.com/@ParkBenchOntology"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="YouTube"

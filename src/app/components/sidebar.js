@@ -11,7 +11,7 @@ export default function SocialSidebar() {
     <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-4">
       {[
         {
-          href: 'https://www.tiktok.com/@gavinstephens152',
+          href: 'https://www.tiktok.com/@parkbenchontology',
           icon: <FaTiktok />,
           label: 'TikTok',
         },

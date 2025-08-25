@@ -85,7 +85,7 @@ export default function Footer(){
           <SiSubstack size={24} />
         </a>
           <a
-          href="https://www.tiktok.com/@gavinstephens152"
+          href="https://www.tiktok.com/@parkbenchontology"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="TikTok"

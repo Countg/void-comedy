@@ -65,7 +65,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-    <body className="overflow-x-hidden overscroll-x-auto">
+<body className="overflow-x-hidden overscroll-auto">
+  
     
            <LayoutClient>
           <SocialSidebar />

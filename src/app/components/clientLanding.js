@@ -27,7 +27,7 @@ export default function ClientLanding({shows, latestEpisode} ) {
       {/* --- BACKDROP FILTER --- */}
       <div
         className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 transition-opacity ${
-          isLandingPage ? 'opacity-40' : 'opacity-15'
+          isLandingPage ? 'opacity-20' : 'opacity-15'
         }`}
       />
 

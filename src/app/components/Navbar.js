@@ -105,15 +105,16 @@ const episodeText = `🎙️ New Episode: "${cleanTitle}"`;
             <Link href="#podcast" className="text-white hover:text-accent-orange font-mono">
               Podcast
             </Link>
+                 <Link href="#projects" className="text-white hover:text-accent-orange font-mono">
+              Projects
+            </Link>
               <Link href="#shows" className="text-white hover:text-accent-orange font-mono">
               Tour
             </Link>
               <Link href="#zine" className="text-white hover:text-accent-orange font-mono">
              Zine
             </Link>
-            <Link href="#projects" className="text-white hover:text-accent-orange font-mono">
-              Projects
-            </Link>
+       
           
            
             <Link href="#about" className="text-white hover:text-accent-orange font-mono">

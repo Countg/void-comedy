@@ -7,14 +7,35 @@ import Link from 'next/link';
 import formatDate from '../lib/formDate';
 import abbreviateCountry from '../lib/country';
 import GlitchBackground from './glitchBackground';
+import { useEffect, useState } from 'react';
 
 
 
-export default function ClientLanding({shows, latestEpisode} ) {
+
+
+export default function ClientLanding({shows: initialShows, latestEpisode} ) {
   const pathname = usePathname();
   const isLandingPage = pathname === '/';
+    const [shows, setShows] = useState(initialShows || []);
   const latestShow = shows.length > 0 ? shows[0] : null;
 
+ useEffect(() => {
+    async function fetchShows() {
+      try {
+        const res = await fetch("/api/shows");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        console.log("Fresh shows from client fetch:", data);
+        setShows(data);
+      } catch (err) {
+        console.error("Error fetching shows on client:", err);
+      }
+    }
+    fetchShows();
+  }, []);
+
+
+ 
   return (
     <>
       {/* --- FIXED BACKGROUND LAYERS --- */}

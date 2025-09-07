@@ -1,25 +1,21 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
-import formatDate from '../lib/formDate';
-import abbreviateCountry from '../lib/country';
-import GlitchBackground from './glitchBackground';
-import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import formatDate from "../lib/formDate";
+import abbreviateCountry from "../lib/country";
+import GlitchBackground from "./glitchBackground";
+import { useEffect, useState } from "react";
 
-
-
-
-
-export default function ClientLanding({shows: initialShows, latestEpisode} ) {
+export default function ClientLanding({ shows: initialShows, latestEpisode }) {
   const pathname = usePathname();
-  const isLandingPage = pathname === '/';
-    const [shows, setShows] = useState(initialShows || []);
+  const isLandingPage = pathname === "/";
+  const [shows, setShows] = useState(initialShows || []);
   const latestShow = shows.length > 0 ? shows[0] : null;
 
- useEffect(() => {
+  useEffect(() => {
     async function fetchShows() {
       try {
         const res = await fetch("/api/shows");
@@ -34,8 +30,6 @@ export default function ClientLanding({shows: initialShows, latestEpisode} ) {
     fetchShows();
   }, []);
 
-
- 
   return (
     <>
       {/* --- FIXED BACKGROUND LAYERS --- */}
@@ -48,7 +42,7 @@ export default function ClientLanding({shows: initialShows, latestEpisode} ) {
       {/* --- BACKDROP FILTER --- */}
       <div
         className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 transition-opacity ${
-          isLandingPage ? 'opacity-20' : 'opacity-15'
+          isLandingPage ? "opacity-20" : "opacity-15"
         }`}
       />
 
@@ -77,19 +71,22 @@ export default function ClientLanding({shows: initialShows, latestEpisode} ) {
           </div>
 
           <p className="mt-6 text-white/80 text-lg md:text-xl leading-relaxed">
-            Latest Episode:{' '}
+            Latest Episode:{" "}
             {latestEpisode ? (
               <span className="text-sunset-orange-500">
-                {latestEpisode.title.replace(/^Episode\s*\d+\s*[:\-–]?\s*/i, '')}
+                {latestEpisode.title.replace(
+                  /^Episode\s*\d+\s*[:\-–]?\s*/i,
+                  "",
+                )}
               </span>
             ) : (
               <span className="text-accentOrange">TBA</span>
             )}
             <br />
-            Upcoming Show:{' '}
+            Upcoming Show:{" "}
             {latestShow ? (
               <span className="text-sunset-orange-500">
-                {formatDate(latestShow.datetime)} — {latestShow.venue.city},{' '}
+                {formatDate(latestShow.datetime)} — {latestShow.venue.city},{" "}
                 {abbreviateCountry(latestShow.venue.country)}
               </span>
             ) : (
@@ -111,10 +108,14 @@ export default function ClientLanding({shows: initialShows, latestEpisode} ) {
 
         {/* --- SECOND SECTION --- */}
         <section className="pt-2 pb-12 text-center max-w-3xl mx-auto relative">
-          <h2 className="text-3xl text-white/70 font-semibold">Welcome to the Collapse</h2>
+          <h2 className="text-3xl text-white/70 font-semibold">
+            Welcome to the Collapse
+          </h2>
           <p className="mt-4 text-lg text-white/70">
-            Listen to the latest episode, get live show updates, or subscribe to the zine.
-            This is where laughter meets dread.
+            <span className="text-sunset-orange-500 ">Park Bench Ontology</span>{" "}
+            is Juno-nominated comedian Gavin Stephens’ unpredictable existential
+            experiment blending comedy, ideas, and absurdity. Listen, subscribe,
+            and discover where laughter meets dread.
           </p>
 
           <div className="mt-8 flex justify-center gap-4">
@@ -131,4 +132,3 @@ export default function ClientLanding({shows: initialShows, latestEpisode} ) {
     </>
   );
 }
-

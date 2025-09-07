@@ -28,84 +28,74 @@ export default function AboutPage() {
 
         {/* Full-Width Text Body Like a Newspaper */}
         <div className="max-w-5xl mx-auto text-left">
-          <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
-            Juno-nominated comedian and Canadian Screen Award winner Gavin
-            Stephens draws on his working-class Caribbean roots to bring a
-            sharp, unflinching perspective to the stage. His comedy isn’t crowd
-            work or pandering — it’s a live existential interrogation. Every
-            show is a unique experiment: weird, risky, and uncomfortably honest,
-            where absurdity, ideas, and uncomfortable truths collide.
-          </p>
+         <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
+  Juno-nominated comedian and Canadian Screen Award winner Gavin
+  Stephens draws on his working-class Caribbean roots to bring a
+  sharp, unflinching perspective to the stage. His comedy isn&apos;t crowd
+  work or pandering — it&apos;s a live existential interrogation. Every
+  show is a unique experiment: weird, risky, and uncomfortably honest,
+  where absurdity, ideas, and uncomfortable truths collide.
+</p>
 
-          <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
-            His Juno-nominated album{" "}
-            <span className="italic text-accent-orange">
-              All Inclusive Coma
-            </span>{" "}
-            proved that undeniable work speaks for itself. With{" "}
-            <span className="italic text-accent-orange">
-              Park Bench Ontology
-            </span>
-            , Gavin delivers blue-collar critiques wrapped in existential dread,
-            calling bullshit on polite liberalism, market virtue, and
-            nationalist performance art.
-          </p>
+<p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
+  His Juno-nominated album{" "}
+  <span className="italic text-accent-orange">
+    All Inclusive Coma
+  </span>{" "}
+  proved that undeniable work speaks for itself. With{" "}
+  <span className="italic text-accent-orange">
+    Park Bench Ontology
+  </span>
+  , Gavin delivers blue-collar critiques wrapped in existential dread,
+  calling bullshit on polite liberalism, market virtue, and
+  nationalist performance art.
+</p>
 
-          <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-12">
-            Gavin has performed at{" "}
-            <span className="italic text-accent-orange">Just for Laughs</span>{" "}
-            Montreal and Toronto,{" "}
-            <span className="italic text-accent-orange">SXSW</span>,{" "}
-            <span className="italic text-accent-orange">
-              the Hamilton Fringe
-            </span>
-            ,{" "}
-            <span className="italic text-accent-orange">
-              the South African Comedy Festival
-            </span>{" "}
-            , with two network comedy specials and two solo shows (
-            <span className="italic text-accent-orange">
-              Spectacular, Spectacular
-            </span>{" "}
-            and{" "}
-            <span className="italic text-accent-orange">
-              Object of Strangeness
-            </span>{" "}
-            ), and appeared on{" "}
-            <span className="italic text-accent-orange">CBC’s Lol</span>,{" "}
-            <span className="italic text-accent-orange">The Debaters</span>, and{" "}
-            <span className="italic text-accent-orange">CTV's Comedy Inc.</span>{" "}
-            He’s also a columnist for{" "}
-            <span className="italic text-accent-orange">CBC Hamilton.</span>{" "}
-            Shaped by working-class and Caribbean culture, his comedy explores
-            identity, ideology, and modern absurdities with wit and urgency.
-            Every performance is a rare experiment in comedy and ideas — best
-            experienced in person.
-          </p>
+<p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-12">
+  Gavin has performed at{" "}
+  <span className="italic text-accent-orange">Just for Laughs</span>{" "}
+  Montreal and Toronto,{" "}
+  <span className="italic text-accent-orange">SXSW</span>,{" "}
+  <span className="italic text-accent-orange">
+    the Hamilton Fringe
+  </span>
+  ,{" "}
+  <span className="italic text-accent-orange">
+    the South African Comedy Festival
+  </span>{" "}
+  , with two network comedy specials and two solo shows (
+  <span className="italic text-accent-orange">
+    Spectacular, Spectacular
+  </span>{" "}
+  and{" "}
+  <span className="italic text-accent-orange">
+    Object of Strangeness
+  </span>{" "}
+  ), and appeared on{" "}
+  <span className="italic text-accent-orange">CBC&apos;s Lol</span>,{" "}
+  <span className="italic text-accent-orange">The Debaters</span>, and{" "}
+  <span className="italic text-accent-orange">CTV&apos;s Comedy Inc.</span>{" "}
+  He&apos;s also a columnist for{" "}
+  <span className="italic text-accent-orange">CBC Hamilton.</span>{" "}
+  Shaped by working-class and Caribbean culture, his comedy explores
+  identity, ideology, and modern absurdities with wit and urgency.
+  Every performance is a rare experiment in comedy and ideas — best
+  experienced in person.
+</p>
 
-          {/* Philosophy & Method Section */}
-          <h2 className="text-2xl font-bold text-accent-orange font-mono mb-4 tracking-wide">
-            PHILOSOPHY & METHOD
-          </h2>
+{/* Philosophy & Method Section */}
+<h2 className="text-2xl font-bold text-accent-orange font-mono mb-4 tracking-wide">
+  PHILOSOPHY & METHOD
+</h2>
 
-          <p className="text-base leading-relaxed text-white/80 font-mono mb-4">
-            Gavin’s comedy lives where collapse meets clarity. His work blends
-            Afro-Absurdism with Ontological Collapse — a smart, critical,
-            punk-philosophical style that asks not just “What’s funny?” but
-            “What’s real?” It’s comedy that unpacks symbols, implicates the
-            audience, and refuses to let cultural performance pass for meaning.
-          </p>
+<p className="text-base leading-relaxed text-white/80 font-mono mb-4">
+  Gavin&apos;s comedy lives where collapse meets clarity. His work blends
+  Afro-Absurdism with Ontological Collapse — a smart, critical,
+  punk-philosophical style that asks not just &quot;What&apos;s funny?&quot; but
+  &quot;What&apos;s real?&quot; It&apos;s comedy that unpacks symbols, implicates the
+  audience, and refuses to let cultural performance pass for meaning.
+</p>
 
-          <p className="text-base leading-relaxed text-white/80 font-mono mb-4">
-            He calls the method:{" "}
-            <span className="text-accentOrange font-semibold">
-              Lo-Fi Ontological Satire
-            </span>{" "}
-            — zine-brained, theory-laced, and low-gloss. It pulls from cultural
-            studies, conspiracy logic, and the poetry of working-class life.
-            It’s cartoonish but brutal, political without sermonizing, and built
-            to push back on every soft lie that holds up a dying system.
-          </p>
 
           <p className="text-base leading-relaxed text-white/80 font-mono">
             Whether in stand-up, podcasting, or longform essays, Gavin’s not

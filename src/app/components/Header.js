@@ -55,7 +55,7 @@ export default function Header({showDates, feed, zine}){
   <div className="mt-4 space-y-2 text-sm sm:text-base text-white/80 sm:ml-4 md:ml-12">
     <div>
       <span className="font-bold italic text-accent-orange">LATEST EPISODE:</span>
-      {feed ? (<span className="ml-2 text-white font-extrabold sm:text-lg">{feed.title.replace(/^Episode\s*\d+\s*[:\-–]?\s*/i, '')}</span>) : (
+      {feed ? (<span className="ml-2 text-white font-extrabold sm:text-lg">{feed?.title?.replace(/^Episode\s*\d+\s*[:\-–]?\s*/i, '') ?? "Untitled Episode"}</span>) : (
         <span className="ml-2 text-white font-extrabold sm:text-lg">TBA</span>
       )}
     </div>

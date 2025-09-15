@@ -59,7 +59,7 @@ const episodeText = `🎙️ New Episode: "${cleanTitle}"`;
           <div className="flex items-center gap-4">
             <Link href="/">
               <Image
-                src="/images/image-Bh3CIBq4Nlul53jbQSzYM3DN5mGWap.png"
+                src="/images/gavinHatSerious.png"
                 alt="Gavin Stephens logo"
                 width={300}
                 height={300}

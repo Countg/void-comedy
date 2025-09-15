@@ -12,7 +12,7 @@ export default function Footer(){
     {/* Logo + Motto */}
     <div className="flex flex-col items-start gap-4">
       <Image
-        src="/images/image-Bh3CIBq4Nlul53jbQSzYM3DN5mGWap.png"
+        src="/images/gavinHatSerious.png"
         alt="Cartoon Face"
         width={500}
         height={500}

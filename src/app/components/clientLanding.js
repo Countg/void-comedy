@@ -15,6 +15,9 @@ export default function ClientLanding({ shows: initialShows, latestEpisode }) {
   const [shows, setShows] = useState(initialShows || []);
   const latestShow = shows.length > 0 ? shows[0] : null;
 
+
+ 
+
   useEffect(() => {
     async function fetchShows() {
       try {
@@ -74,10 +77,10 @@ export default function ClientLanding({ shows: initialShows, latestEpisode }) {
             Latest Episode:{" "}
             {latestEpisode ? (
               <span className="text-sunset-orange-500">
-                {latestEpisode.title.replace(
-                  /^Episode\s*\d+\s*[:\-–]?\s*/i,
-                  "",
-                )}
+                {latestEpisode?.title?.replace(
+  /^Episode\s*\d+\s*[:\-–]?\s*/i,
+  "",
+) ?? "Untitled Episode"}
               </span>
             ) : (
               <span className="text-accentOrange">TBA</span>
@@ -96,7 +99,7 @@ export default function ClientLanding({ shows: initialShows, latestEpisode }) {
 
           <div className="mt-10 flex justify-center">
             <Image
-              src="/images/image-Bh3CIBq4Nlul53jbQSzYM3DN5mGWap.png"
+              src="/images/gavinHatSerious.png"
               alt="Gavin"
               width={500}
               height={500}

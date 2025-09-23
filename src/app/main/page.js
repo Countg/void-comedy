@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import ClientMain from "../components/clientMain";
 import showDates from "@/lib/showDates";
 import getLatestEpisodes from '@/lib/latestEpisode';

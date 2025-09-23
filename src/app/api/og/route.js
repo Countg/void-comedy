@@ -1,5 +1,6 @@
 // app/api/og/route.js
 import { ImageResponse } from 'next/og';
+import Image from 'next/image';
 
 export const runtime = 'edge';
 
@@ -63,7 +64,7 @@ export async function GET(req) {
           />
 
           {/* Portrait */}
-          <img
+          <Image
             src={portraitUrl}
             width={200}
             height={200}

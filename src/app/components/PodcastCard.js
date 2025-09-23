@@ -5,6 +5,15 @@ import { platforms } from "../lib/projectInfo"; // Adjust the import path as nee
 import PlayerWrapper from "./Audio";
 
 
+// Utility to strip everything after (and including) 'Follow & Support'
+function cleanDescription(desc) {
+  if (!desc) return '';
+  const idx = desc.search(/🔗?\s*Follow\s*&?\s*Support/i);
+  if (idx !== -1) {
+    return desc.slice(0, idx).trim();
+  }
+  return desc;
+}
 
 export default function PodcastCard({ title, subtitle, description, imageSrc, acastLink, date, spotifyLink, appleLink, youtubeLink, episode, audioSrc }) {
 
@@ -60,7 +69,7 @@ return (
         <br />
         <p>
         {description
-          ? description.replace(/Hosted on Acast\. See acast\.com\/privacy for more information\./gi, '')
+          ? cleanDescription(description.replace(/Hosted on Acast\. See acast\.com\/privacy for more information\./gi, ''))
           : "Explore the essence of meme life, symbolic drift, and collective dread through a Black absurdist lens."}
         </p>
       </div>

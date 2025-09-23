@@ -9,10 +9,10 @@ import SocialSidebar from './components/sidebar';
 export const metadata = {
  
   title: 'PARK BENCH // ONTOLOGY',
-    description: 'Ontological dread through comedy, memes, and collapse.',
+    description: 'Gavin Stephens: lo-fi ontological satire, comedy of collapse, and meme-theory dread.',
     openGraph: {
       title: 'Park Bench Ontology – Gavin Stephens',
-      description: 'Ontological dread through comedy, memes, and collapse.',
+      description: 'Gavin Stephens: lo-fi ontological satire, comedy of collapse, and meme-theory dread.',
       url: 'https://gavinstephens.ca',
       type: 'website',
     },

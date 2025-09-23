@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import ClientLanding from './components/clientLanding';
 import showDates from './lib/showDates';
 import getLatestEpisodes from './lib/latestEpisode';

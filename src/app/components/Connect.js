@@ -80,7 +80,7 @@ export default function ConnectPage({shows}) {
                   Comedy of collapse. Anti-corporate. Anti-comfort.
                 </p>
                 <p className="text-sm text-slate-300">
-                  A philosophy-meets-comedy project about whiteness, identity,
+                  A philosophy-meets-comedy project about identity,
                   capitalism, and existential dread. It&apos;s not crowd work;
                   it&apos;s interrogation.
                 </p>

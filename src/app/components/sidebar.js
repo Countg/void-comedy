@@ -25,11 +25,7 @@ export default function SocialSidebar() {
           icon: <FaYoutube />,
           label: 'YouTube',
         },
-        {
-          href: 'https://linktr.ee/gavinstephens?ltsid=ff5d90b2-3a6c-472a-9ba6-91bcc8aedf2e',
-          icon: <SiLinktree />,
-          label: 'LinkTree',
-        },
+      
             {
           href: 'https://gavinbstephens.substack.com/',
           icon: <SiSubstack />,

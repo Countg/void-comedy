@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
   
     
            <LayoutClient>
-          <SocialSidebar />
+      
           {children}
         </LayoutClient>
 

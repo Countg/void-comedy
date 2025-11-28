@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import ClientLanding from './components/clientLanding';
 import showDates from './lib/showDates';
 import getLatestEpisodes from './lib/latestEpisode';
+import SocialSidebar from './components/sidebar';
 
 // Async metadata function
 export async function generateMetadata() {
@@ -64,6 +65,7 @@ try {
 
   return (
     <>
+    <SocialSidebar/>
       <ClientLanding shows={shows} latestEpisode={latestEpisodesData.episode} />
     </>
   );

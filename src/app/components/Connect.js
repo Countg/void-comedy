@@ -131,7 +131,11 @@ export default function ConnectPage({shows}) {
                   <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
                     <div>
                       <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-300/90">
-                        {show.datetime}
+                        {show.datetime ? new Date(show.datetime).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        }) : "Date TBA"}{" "}
                       </p>
                       <p className="text-sm font-medium text-slate-50 md:text-base">
                         {show.venue.city} — {show.venue.name}

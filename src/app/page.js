@@ -66,7 +66,7 @@ try {
   return (
     <>
     <SocialSidebar/>
-      <ClientLanding shows={shows} latestEpisode={latestEpisodesData.episode} />
+    <ClientLanding shows={shows} latestEpisode={latestEpisodesData.episode} />
     </>
   );
 }

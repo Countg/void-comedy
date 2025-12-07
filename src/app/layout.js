@@ -1,9 +1,9 @@
 // app/layout.tsx (server)
-import '@/styles/globals.css';
+import "./globals.css";
 import { ReactNode } from 'react';
 import LayoutClient from './components/LayoutClient';
-import 'tailwindcss/tailwind.css';
-import SocialSidebar from './components/sidebar';
+
+
 
 
 export const metadata = {

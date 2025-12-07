@@ -2,19 +2,34 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-      domains: ["assets.pippa.io", 'ewazrwzivgavdenagrnd.supabase.co'],
-  
-    
     remotePatterns: [
+      // Printful
       {
         protocol: 'https',
         hostname: 'files.cdn.printful.com',
-        // optionally specify port and pathname if needed
-        // port: '',
-        // pathname: '/**',
+        pathname: '/**',
+      },
+      // Supabase storage
+      {
+        protocol: 'https',
+        hostname: 'ewazrwzivgavdenagrnd.supabase.co',
+        pathname: '/**',
+      },
+
+      
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.site.com',
+        pathname: '/**',
       },
     ],
   },
 };
 
 export default nextConfig;
+

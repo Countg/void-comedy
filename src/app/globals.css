@@ -1,9 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* --- Root Vars --- */
-:root {
+@theme {
   --color-sunset-orange-100: #fff1f0;
   --color-sunset-orange-500: #FF6719;
   --color-sunset-orange-900: #c94c43;

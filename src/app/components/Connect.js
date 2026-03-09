@@ -1,9 +1,10 @@
 "use client";
-import ShowDates from "./ShowDates";
+
 import { usePathname } from "next/navigation";
 import GlitchBackground from "./glitchBackground";
 
 import Link from "next/link";
+import showDates from "@/lib/showDates";
 
 export default function ConnectPage({shows}) {
   // TEMP: replace with your real shows or wire to your API later

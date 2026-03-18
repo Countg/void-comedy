@@ -26,10 +26,11 @@ export default function Footer(){
     {/* Quick Links */}
     <div className="flex flex-col gap-2">
       <h3 className="text-accent-orange font-bold text-sm uppercase tracking-wider">Navigation</h3>
-      <a href="#about" className="text-white hover:text-accent-orange text-sm font-mono">About</a>
-      <a href="#projects" className="text-white hover:text-accent-orange text-sm font-mono">Projects</a>
+ <a href="#home" className="text-white hover:text-accent-orange text-sm font-mono">Home</a>
       <a href="#podcast" className="text-white hover:text-accent-orange text-sm font-mono">Podcast</a>
+      <a href="#projects" className="text-white hover:text-accent-orange text-sm font-mono">Projects</a>
       <a href="#shows" className="text-white hover:text-accent-orange text-sm font-mono">Tour Dates</a>
+            <a href="#about" className="text-white hover:text-accent-orange text-sm font-mono">About</a>
       <a href="#merch" className="text-white hover:text-accent-orange text-sm font-mono">Shop</a>
     </div>
 

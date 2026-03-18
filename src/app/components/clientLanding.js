@@ -8,6 +8,7 @@ import formatDate from "../lib/formDate";
 import abbreviateCountry from "../lib/country";
 import GlitchBackground from "./glitchBackground";
 import { useEffect, useState } from "react";
+import FindingsLink from "./FindingsLink";
 
 export default function ClientLanding({ shows: initialShows, latestEpisode }) {
   const pathname = usePathname();
@@ -116,9 +117,7 @@ export default function ClientLanding({ shows: initialShows, latestEpisode }) {
           </h2>
           <p className="mt-4 text-lg text-white/70">
             <span className="text-sunset-orange-500 ">Park Bench Ontology</span>{" "}
-            is Juno-nominated comedian Gavin Stephens’ unpredictable existential
-            experiment blending comedy, ideas, and absurdity. Listen, subscribe,
-            and discover where laughter meets dread.
+           Park Bench Ontology is an ongoing inquiry into what's funny, what's real, and why those keep turning out to be the same thing. Created by JUNO-nominated comedian Gavin Stephens. <FindingsLink />
           </p>
 
           <div className="mt-8 flex justify-center gap-4">

@@ -1,24 +1,20 @@
-import nodemailer from 'nodemailer';
+import { sendEmail } from '@/lib/sendEmail';
 
-export async function sendEmail({ name, email, message }) {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.CONTACT_EMAIL,
-      pass: process.env.CONTACT_PASS,
-    },
-  });
+export async function POST(req) {
+  try {
+    const body = await req.json();
+    const { name, email, message } = body;
 
-  const mailOptions = {
-    from: process.env.CONTACT_EMAIL,  // ← Fixed: send FROM your email
-    to: process.env.CONTACT_EMAIL,
-    replyTo: email,  // ← User's email goes here
-    subject: `New message from ${name}`,
-    text: message,
-  };
+    if (!name || !email || !message) {
+      return new Response(JSON.stringify({ error: 'Missing fields' }), { status: 400 });
+    }
 
-  await transporter.sendMail(mailOptions);
+    await sendEmail({ name, email, message });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (err) {
+    console.error(err);
+    return new Response(JSON.stringify({ error: 'Failed to send message' }), { status: 500 });
+  }
 }
-
 
 

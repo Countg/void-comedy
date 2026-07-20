@@ -33,17 +33,7 @@ export default function SubstackPosts() {
           </div>
         </Link>
       </motion.div>
-      <div className="mt-8 max-w-4xl mx-auto px-4 relative before:content-[''] before:absolute before:inset-0 before:bg-[url('/glitch.png')] before:opacity-5">
-        <iframe
-          src="https://parkbenchontology.substack.com/"
-          width="100%"
-          height="150"
-          className="border border-white/20 border-dashed bg-black/20 rounded-sm shadow-md backdrop-blur-sm"
-          frameBorder="0"
-          scrolling="no"
-          title="Substack embed"
-        />
-      </div>
+
     </>
   </CardContainer>
   );

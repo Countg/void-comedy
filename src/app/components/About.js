@@ -88,6 +88,10 @@ export default function AboutPage() {
             </Link>
             .
           </p>
+
+          <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-12">
+            If it can&apos;t be questioned, it can&apos;t be funny.
+          </p>
         </div>
 
         {/* Downloadable Bio */}

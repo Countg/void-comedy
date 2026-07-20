@@ -79,19 +79,15 @@ export default function AboutPage() {
           freedom, a community built equally on belonging and gatekeeping.
         </p>
         <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-6">
-          Essays at{" "}
-
-            href="https://parkbenchontology.substack.com"
-            className="italic text-accent-orange underline"
-          >
-            parkbenchontology.substack.com
-          </a>
-          .
-        </p>
-        <p className="text-lg leading-relaxed text-[#e6e6e6] font-mono mb-12">
-          If it can&apos;t be questioned, it can&apos;t be funny.
-        </p>
-
+            Essays at{" "}
+            <Link
+              href="https://parkbenchontology.substack.com"
+              className="italic text-accent-orange underline"
+            >
+              parkbenchontology.substack.com
+            </Link>
+            .
+          </p>
 </div>
 
         {/* Downloadable Bio */}
@@ -122,7 +118,6 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-      </div>
     </CardContainer>
   );
 }

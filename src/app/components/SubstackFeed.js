@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function SubstackPosts() {
-  
+
 
   return (
   <CardContainer>
@@ -21,7 +21,7 @@ export default function SubstackPosts() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <Link href="https://gavinbstephens.substack.com" target='_blank' className="block mb-4 text-lg">
+        <Link href="https://parkbenchontology.substack.com/s/dispatch-from-the-simulation" target='_blank' className="block mb-4 text-lg">
           <div className="w-full max-w-4xl mx-auto mb-8">
             <Image
               src="/images/dispatches-from-simulation-text.png" // Replace with your image path
@@ -35,7 +35,7 @@ export default function SubstackPosts() {
       </motion.div>
       <div className="mt-8 max-w-4xl mx-auto px-4 relative before:content-[''] before:absolute before:inset-0 before:bg-[url('/glitch.png')] before:opacity-5">
         <iframe
-          src="https://gavinbstephens.substack.com/embed"
+          src="https://parkbenchontology.substack.com/s/dispatch-from-the-simulation"
           width="100%"
           height="150"
           className="border border-white/20 border-dashed bg-black/20 rounded-sm shadow-md backdrop-blur-sm"

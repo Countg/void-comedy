@@ -3,7 +3,7 @@ import Parser from 'rss-parser';
 
 export async function GET() {
   const parser = new Parser();
-  const feed = await parser.parseURL('https://gavinbstephens.substack.com/feed');
+  const feed = await parser.parseURL('https://parkbenchontology.substack.com/feed');
 
   const posts = feed.items.slice(0, 5).map(post => ({
     title: post.title,
@@ -17,5 +17,3 @@ export async function GET() {
     headers: { 'Content-Type': 'application/json' }
   });
 }
-
-

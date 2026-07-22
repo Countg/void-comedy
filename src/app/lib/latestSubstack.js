@@ -12,7 +12,9 @@ export async function fetchSubstackPosts() {
     }
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'; 
+  const baseUrl = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const res = await fetch(`${baseUrl}/api/substack`, { cache: 'no-store' });
 
   if (!res.ok) {

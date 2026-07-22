@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  turbopack: {
+    root: import.meta.dirname,
+  },
   images: {
     remotePatterns: [
       // Printful
@@ -17,6 +20,17 @@ const nextConfig = {
       },
 
       
+      // Substack post images
+      {
+        protocol: 'https',
+        hostname: 'substackcdn.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'substack-post-media.s3.amazonaws.com',
+        pathname: '/**',
+      },
       {
         protocol: 'https',
         hostname: 'example.com',

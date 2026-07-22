@@ -85,8 +85,8 @@ export default function ClientMain({ shows, latestFeed, products, latestEpisode,
         <ShowDates comedy={shows} />
 
         <div>
-         <SubstackPosts/>
-           
+         <SubstackPosts posts={latestFeed} />
+
         </div>
       </section>
 
@@ -95,7 +95,7 @@ export default function ClientMain({ shows, latestFeed, products, latestEpisode,
      
 
       <AboutPage />
-      <ShopCard productData={products} />
+      {/* <ShopCard productData={products} /> */}
       <SignupForm/>
       </div>
     

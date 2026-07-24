@@ -20,6 +20,12 @@ const nextConfig = {
       },
 
       
+      // YouTube video thumbnails
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+        pathname: '/**',
+      },
       // Substack post images
       {
         protocol: 'https',

@@ -3,10 +3,11 @@
 import { usePathname } from "next/navigation";
 import GlitchBackground from "./glitchBackground";
 
+import Image from "next/image";
 import Link from "next/link";
 import showDates from "@/lib/showDates";
 
-export default function ConnectPage({shows}) {
+export default function ConnectPage({shows, latestVideo}) {
   // TEMP: replace with your real shows or wire to your API later
     const pathname = usePathname();
   const isLandingPage = pathname === "/";
@@ -87,8 +88,7 @@ export default function ConnectPage({shows}) {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-2 md:items-end">
-       
+              <div className="flex md:items-end">
                 <Link
                   href="https://www.youtube.com/playlist?list=PLOStPFwaNyn895S43bUk9HoaZdFEIXlQc"
                   className= "inline-flex items-center justify-center rounded-full border border-[#FF6719]/80 bg-[#FF6719] px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-950shadow-[0_16px_35px_rgba(0,0,0,0.85)] transition hover:bg-[#ff7e3c]"
@@ -97,6 +97,41 @@ export default function ConnectPage({shows}) {
                 </Link>
               </div>
             </div>
+
+            {latestVideo && (
+              <div className="mt-5 border-t border-slate-700/60 pt-5">
+                <Link
+                  href={latestVideo.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    group block w-full overflow-hidden
+                    rounded-xl border border-slate-700/60
+                    bg-[#1b1a3f]/70
+                    transition hover:border-[#FF6719]/60
+                  "
+                >
+                  {latestVideo.thumbnail && (
+                    <span className="relative block aspect-video w-full overflow-hidden">
+                      <Image
+                        src={latestVideo.thumbnail}
+                        alt={latestVideo.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </span>
+                  )}
+                  <span className="flex flex-col gap-1 px-4 py-3">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#FF9A5E]">
+                      Latest video
+                    </span>
+                    <span className="text-sm text-slate-200 group-hover:text-white">
+                      {latestVideo.title}
+                    </span>
+                  </span>
+                </Link>
+              </div>
+            )}
           </div>
         </section>
 

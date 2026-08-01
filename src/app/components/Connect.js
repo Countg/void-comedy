@@ -1,19 +1,62 @@
-"use client";
-
-import { usePathname } from "next/navigation";
+import Link from "next/link";
 import GlitchBackground from "./glitchBackground";
 
-import Image from "next/image";
-import Link from "next/link";
-import showDates from "@/lib/showDates";
+// ============================================================================
+// EDIT ME — everything you'll ever want to change lives in this one object.
+// Save the file when you're done; the live site updates on next deploy.
+// ============================================================================
+const CONFIG = {
+  // Your Substack address (no "https://", no trailing slash).
+  // This powers the signup box below — get it exactly right or signups won't work.
+  substackDomain: "parkbenchontology.substack.com",
 
-export default function ConnectPage({shows, latestVideo}) {
-  // TEMP: replace with your real shows or wire to your API later
-    const pathname = usePathname();
-  const isLandingPage = pathname === "/";
+  // The big headline. This is the first and biggest thing anyone sees.
+  // Keep it to one short line — it has to work on a phone screen.
+  headline: "The algorithm doesn't work for you.",
+
+  // The reason to sign up, right under the headline. This is the line that
+  // actually convinces someone to hand over their email.
+  reasonLine:
+    "Instagram and TikTok flip a coin on whether you ever see the next thing. Skip the coin flip — get it straight in your inbox.",
+
+  // Text on the signup button.
+  buttonText: "Subscribe free →",
+
+  // Small trust line under the button. This is what talks someone down from
+  // being wary about handing over their email.
+  microcopy:
+    "No spam, no sales funnel — just an email when there's something new. Unsubscribe in one click.",
+
+  // Your name / show name, shown tiny at the very top.
+  eyebrow: "Park Bench Ontology",
+
+  // Socials — small and secondary on purpose. Add, remove, or reorder freely;
+  // the layout adjusts automatically. Order here is left-to-right, top-to-bottom.
+  socials: [
+    { label: "TikTok", href: "https://www.tiktok.com/@parkbenchontology" },
+    { label: "Instagram", href: "https://instagram.com/countgavin" },
+    { label: "Bluesky", href: "https://bsky.app/profile/parkbenchontology.substack.com" },
+    { label: "YouTube", href: "https://www.youtube.com/@parkbenchontology" },
+  ],
+
+  // One or two sentences about who you are. Shown small, near the bottom.
+  bio: "Existential comedian. Afro-absurdist. I make comedy for people who hate propaganda and still want to laugh.",
+
+  // Booking / collab contact email, shown small at the very bottom.
+  bookingEmail: "info@gavinstephens.com",
+
+  // Manifesto blurb — shown smallest, last thing on the page.
+  manifesto:
+    "I don't sell comfort. I make comedy for people who hate propaganda and still want to laugh. The world is absurd; my job is to point at it before we all go extinct.",
+};
+// ============================================================================
+// END EDIT SECTION — page code below. No need to touch anything past here.
+// ============================================================================
+
+export default function ConnectPage({ shows = [] }) {
+  const subscribeAction = `https://${CONFIG.substackDomain}/api/v1/free?nojs=true`;
 
   return (
-
     <main
       className="
         min-h-screen
@@ -22,7 +65,7 @@ export default function ConnectPage({shows, latestVideo}) {
         text-slate-50
       "
     >
-   {/* --- FIXED BACKGROUND LAYERS --- */}
+      {/* --- FIXED BACKGROUND LAYERS --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 glitch-bg" />
         <div className="absolute inset-0 scanlines" />
@@ -30,250 +73,151 @@ export default function ConnectPage({shows, latestVideo}) {
       </div>
 
       {/* --- BACKDROP FILTER --- */}
-      <div
-        className={`fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 transition-opacity ${
-          isLandingPage ? "opacity-15" : "opacity-20"
-        }`}
-      />
+      <div className="fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 opacity-20" />
 
-      {/* --- SCROLLABLE CONTENT --- */}
+      {/* --- CONTENT --- */}
+      <div className="relative mx-auto flex w-full max-w-sm flex-col gap-8 px-5 py-12 sm:py-16">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-400/80">
+          {CONFIG.eyebrow}
+        </p>
 
-        
-      {/* Optional noise overlay if you add /noise.png */}
-      {/* <div
-        className="pointer-events-none fixed inset-0 opacity-[0.07] mix-blend-soft-light"
-        style={{ backgroundImage: "url(/noise.png)" }}
-      /> */}
-
-      <div className="relative mx-auto flex w-full max-w-3xl flex-col gap-10 px-4 py-10 md:px-6 md:py-16">
-        {/* HEADER */}
-        <header className="space-y-3">
-          <p className="text-xs uppercase tracking-[0.35em] text-slate-400/80">
-            connect
-          </p>
-          <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-            Gavin Stephens
+        {/* ============ PRIMARY: headline + signup ============ */}
+        <section className="flex flex-col gap-4">
+          <h1 className="text-[32px] font-bold leading-[1.15] tracking-tight text-balance sm:text-4xl">
+            {CONFIG.headline}
           </h1>
-          <p className="max-w-xl text-sm text-slate-300 md:text-base">
-            Existential comedian • Afro-absurdist • lo-fi ontological satirist.
-            I make comedy for people who hate propaganda and still want to
-            laugh.
+
+          <p className="max-w-[34ch] text-[15px] leading-relaxed text-slate-300">
+            {CONFIG.reasonLine}
           </p>
-        </header>
 
-            {/* PARK BENCH ONTOLOGY */}
-        <section className="space-y-3">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-200">
-            Park Bench Ontology
-          </h2>
-
-          <div
+          <form
+            action={subscribeAction}
+            method="post"
             className="
-              rounded-2xl border border-slate-700/70
-              bg-gradient-to-br from-[#25245b]/90 via-[#131427]/95 to-[#050510]
-              px-4 py-5
-              shadow-[0_22px_45px_rgba(0,0,0,0.9)]
-              md:px-6 md:py-6
+              mt-1 flex flex-col gap-3 rounded-2xl border border-[#FF6719]/45
+              bg-gradient-to-b from-[#FF6719]/10 to-[#FF6719]/[0.02]
+              p-3.5 shadow-[0_20px_45px_rgba(255,103,25,0.12)]
             "
           >
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div className="space-y-2">
-                <p className="text-base font-semibold text-slate-50 md:text-lg">
-                  Comedy of collapse. Anti-corporate. Anti-comfort.
-                </p>
-                <p className="text-sm text-slate-300">
-                  A philosophy-meets-comedy project about identity,
-                  capitalism, and existential dread. It&apos;s not crowd work;
-                  it&apos;s interrogation.
-                </p>
-              </div>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="your@email.com"
+              aria-label="Email address"
+              autoComplete="email"
+              inputMode="email"
+              className="
+                w-full rounded-xl border border-slate-500/40 bg-[#050510]/70
+                px-4 py-3.5 text-[15px] text-slate-50 placeholder:text-slate-500
+                outline-none transition focus-visible:border-[#FF6719]
+                focus-visible:ring-2 focus-visible:ring-[#FF6719]/50
+              "
+            />
+            <button
+              type="submit"
+              className="
+                w-full rounded-xl bg-[#FF6719] px-4 py-3.5 text-[15px] font-bold
+                tracking-wide text-[#1a0d00] transition hover:bg-[#ff7e3c]
+                focus-visible:outline focus-visible:outline-2
+                focus-visible:outline-offset-2 focus-visible:outline-[#FF6719]
+              "
+            >
+              {CONFIG.buttonText}
+            </button>
+          </form>
 
-              <div className="flex md:items-end">
-                <Link
-                  href="https://www.youtube.com/playlist?list=PLOStPFwaNyn895S43bUk9HoaZdFEIXlQc"
-                  className= "inline-flex items-center justify-center rounded-full border border-[#FF6719]/80 bg-[#FF6719] px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-950shadow-[0_16px_35px_rgba(0,0,0,0.85)] transition hover:bg-[#ff7e3c]"
-                >
-                  Park Bench playlist
-                </Link>
-              </div>
-            </div>
-
-            {latestVideo && (
-              <div className="mt-5 border-t border-slate-700/60 pt-5">
-                <Link
-                  href={latestVideo.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    group block w-full overflow-hidden
-                    rounded-xl border border-slate-700/60
-                    bg-[#1b1a3f]/70
-                    transition hover:border-[#FF6719]/60
-                  "
-                >
-                  {latestVideo.thumbnail && (
-                    <span className="relative block aspect-video w-full overflow-hidden">
-                      <Image
-                        src={latestVideo.thumbnail}
-                        alt={latestVideo.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </span>
-                  )}
-                  <span className="flex flex-col gap-1 px-4 py-3">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#FF9A5E]">
-                      Latest video
-                    </span>
-                    <span className="text-sm text-slate-200 group-hover:text-white">
-                      {latestVideo.title}
-                    </span>
-                  </span>
-                </Link>
-              </div>
-            )}
-          </div>
+          <p className="text-center text-xs text-slate-500">{CONFIG.microcopy}</p>
         </section>
 
-        {/* LIVE SHOWS */}
-        <section className="space-y-4">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-200">
-              Live Shows
-            </h2>
-            <span className="rounded-full bg-[#2b2c4a]/80 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-300">
-              current
-            </span>
-          </div>
-
-          {shows.length === 0 ? (
-            <p className="text-sm text-slate-400">
-              No dates posted yet. Check back soon or follow on Instagram.
-            </p>
-          ) : (
-            <ul className="space-y-3">
-              {shows.map((show, i) => (
-                <li
-                  key={i}
-                  className="
-                    rounded-xl border border-slate-700/60
-                    bg-[#231f5a]/70
-                    backdrop-blur-sm
-                    px-4 py-3 text-sm
-                    shadow-[0_18px_35px_rgba(0,0,0,0.65)]
-                    md:px-5 md:py-4
-                  "
-                >
-                  <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-300/90">
-                        {show.datetime ? new Date(show.datetime).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        }) : "Date TBA"}{" "}
-                      </p>
-                      <p className="text-sm font-medium text-slate-50 md:text-base">
-                        {show.venue.city} — {show.venue.name}
-                      </p>
-                    
-                    </div>
-
+        {shows.length > 0 && (
+          <>
+            <hr className="border-slate-700/50" />
+            <div className="flex flex-col gap-2">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-slate-600">
+                Live shows
+              </p>
+              <ul className="flex flex-col gap-4">
+                {shows.map((show, i) => (
+                  <li
+                    key={i}
+                    className="flex items-center justify-between gap-3 text-xs text-slate-500"
+                  >
+                    <span>
+                      <span className="font-medium text-[#FFB583]">
+                        {show.datetime
+                          ? new Date(show.datetime).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                            })
+                          : "TBA"}
+                      </span>{" "}
+                      — {show.venue.city}, {show.venue.name}
+                    </span>
                     {show.url && (
                       <Link
                         href={show.url}
-                        className="
-                          mt-2 inline-flex items-center justify-center
-                          rounded-full border border-[#FF6719]/80
-                          bg-[#FF6719]
-                          px-4 py-1.5 text-xs font-semibold uppercase
-                          tracking-[0.18em] text-slate-950
-                          shadow-[0_12px_25px_rgba(0,0,0,0.75)]
-                          transition
-                          hover:bg-[#ff7e3c]
-                          md:mt-0
-                        "
+                        className="shrink-0 rounded-full border border-[#FF6719]/50 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#FFB583] transition hover:border-[#FF6719] hover:bg-[#FF6719]/10"
                       >
                         Tickets
                       </Link>
                     )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
 
-    
+        <hr className="border-slate-700/50" />
 
-        {/* SOCIALS */}
-        {/* SOCIALS */}
-<section className="space-y-3">
-  <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-200">
-    Social / Channels
-  </h2>
+        {/* ============ SECONDARY: socials ============ */}
+        <nav
+          aria-label="Social links"
+          className="flex flex-wrap gap-x-5 gap-y-2 text-[13px]"
+        >
+          {CONFIG.socials.map((social) => (
+            <Link
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 underline decoration-slate-600 underline-offset-4 transition hover:text-[#FF9A5E] hover:decoration-[#FF9A5E]"
+            >
+              {social.label}
+            </Link>
+          ))}
+        </nav>
 
-  <div className="grid gap-3 grid-cols-2 sm:grid-cols-4">
-    <SocialButton
-      label="Instagram"
-      sublabel="Clips + tour updates"
-      href="https://instagram.com/countgavin"
-      platform="instagram"
-    />
-    <SocialButton
-      label="YouTube"
-      sublabel="Episodes + bits"
-      href="https://www.youtube.com/@parkbenchontology"
-      platform="youtube"
-    />
-    <SocialButton
-      label="Substack"
-      sublabel="Essays + notes"
-      href="https://gavinbstephens.substack.com"
-      platform="substack"
-    />
-    <SocialButton
-      label="TikTok"
-      sublabel="Shorts + chaos"
-      href="https://www.tiktok.com/@parkbenchontology"
-      platform="tiktok"
-    />
-  </div>
-</section>
+        <hr className="border-slate-700/50" />
 
+        {/* ============ TERTIARY: bio ============ */}
+        <p className="text-xs leading-relaxed text-slate-500">{CONFIG.bio}</p>
 
-        {/* CONTACT */}
-        <section className="space-y-2">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-200">
-            Booking & Collabs
-          </h2>
-          <p className="text-sm text-slate-300">
-            For shows, festivals, galleries, podcasts, or experiments:
+        {/* ============ QUIET TAIL: booking, manifesto ============ */}
+        <hr className="border-slate-800/60" />
+
+        <div className="flex flex-col gap-1">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-slate-600">
+            Booking &amp; collabs
           </p>
-          <p className="text-sm font-medium text-[#FF9A5E]">
-             <Link href="mailto:info@gavinstephens.com">
-    info@gavinstephens.com
-  </Link>
-          </p>
-        </section>
+          <Link
+            href={`mailto:${CONFIG.bookingEmail}`}
+            className="text-xs text-[#FF9A5E] underline decoration-slate-700 underline-offset-2 hover:text-[#ff7e3c]"
+          >
+            {CONFIG.bookingEmail}
+          </Link>
+        </div>
 
-        {/* MANIFESTO */}
-        <section className="mt-2 border-t border-slate-700/70 pt-6 text-sm text-slate-300">
-          <p>
-            I don&apos;t sell comfort. I make comedy for people who hate
-            propaganda and still want to laugh. The world is absurd; my job is
-            to point at it before we all go extinct.
-          </p>
-          <p className="mt-3 text-xs uppercase tracking-[0.22em] text-slate-400">
-            You found the bench. Stay curious.
-          </p>
-        </section>
+        <p className="text-[11px] italic leading-relaxed text-slate-600">
+          {CONFIG.manifesto}
+        </p>
 
-        {/* MAIN SITE LINK — VOID AESTHETIC (Version 2) */}
-        <p className="mt-12 text-center text-[11px] tracking-wide text-slate-500/80">
+        <p className="text-center text-[11px] text-slate-600">
           <Link
             href="/"
-            className="text-slate-300 hover:text-[#FF6719] transition-colors duration-200"
+            className="transition-colors duration-200 hover:text-[#FF6719]"
           >
             Return to the main site
           </Link>
@@ -282,192 +226,3 @@ export default function ConnectPage({shows, latestVideo}) {
     </main>
   );
 }
-
-function SocialButton({ label, sublabel, href, platform }) {
-
-    function InstagramIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-4 w-4 text-[#E1306C]"
-      aria-hidden="true"
-    >
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="5"
-        ry="5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <circle
-        cx="12"
-        cy="12"
-        r="4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <circle cx="17" cy="7" r="1" fill="currentColor" />
-    </svg>
-  );
-}
-
-function YouTubeIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-4 w-4 text-[#FF0000]"
-      aria-hidden="true"
-    >
-      <rect
-        x="3"
-        y="6"
-        width="18"
-        height="12"
-        rx="3"
-        ry="3"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <polygon
-        points="10,9 16,12 10,15"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-function TikTokIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-4 w-4 text-[#25F4EE]"
-      aria-hidden="true"
-    >
-      <path
-        d="M14.5 5.5c.5 1.3 1.5 2.3 2.8 2.8l1.2.4v2.4a5 5 0 0 1-3-1v3.4a5.2 5.2 0 1 1-5-5.2"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function SubstackIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-4 w-4 text-[#FF6719]"
-      aria-hidden="true"
-    >
-      <rect
-        x="4"
-        y="5"
-        width="16"
-        height="3"
-        fill="currentColor"
-      />
-      <rect
-        x="4"
-        y="9"
-        width="16"
-        height="3"
-        fill="currentColor"
-      />
-      <path
-        d="M6 13h12v6l-6-3-6 3z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-  // per-platform accent colours
-  let accentBorder = "border-slate-700/70";
-  let accentHoverBorder = "hover:border-[#FF6719]/90";
-  let accentGlow = "group-hover:shadow-[0_0_25px_rgba(255,103,25,0.5)]";
-
-  if (platform === "instagram") {
-    accentBorder = "border-[#E1306C]/50";
-    accentHoverBorder = "hover:border-[#E1306C]/90";
-    accentGlow = "group-hover:shadow-[0_0_25px_rgba(225,48,108,0.55)]";
-  } else if (platform === "youtube") {
-    accentBorder = "border-[#FF0000]/45";
-    accentHoverBorder = "hover:border-[#FF0000]/90";
-    accentGlow = "group-hover:shadow-[0_0_25px_rgba(255,0,0,0.5)]";
-  } else if (platform === "tiktok") {
-    accentBorder = "border-[#25F4EE]/40";
-    accentHoverBorder = "hover:border-[#25F4EE]/90";
-    accentGlow = "group-hover:shadow-[0_0_25px_rgba(37,244,238,0.5)]";
-  } else if (platform === "substack") {
-    accentBorder = "border-[#FF6719]/40";
-    accentHoverBorder = "hover:border-[#FF6719]/90";
-    accentGlow = "group-hover:shadow-[0_0_25px_rgba(255,103,25,0.45)]";
-  }
-
-  return (
-    <Link
-      href={href}
-      className={`
-        group relative flex min-h-[120px] flex-col justify-between
-        overflow-hidden rounded-xl border
-        bg-[#231f5a]/75 p-3 text-left
-        shadow-[0_14px_30px_rgba(0,0,0,0.8)]
-        backdrop-blur-sm
-        transition
-        hover:-translate-y-0.5 hover:translate-x-0.5
-        ${accentBorder} ${accentHoverBorder} ${accentGlow}
-      `}
-    >
-      {/* glitch border layer */}
-      <span
-        className="
-          pointer-events-none absolute inset-0 rounded-xl
-          border border-[#FF6719]/0
-          opacity-0
-          transition
-          duration-200
-          group-hover:border-[#FF6719]/40
-          group-hover:opacity-100
-          group-hover:translate-x-[2px]
-          group-hover:translate-y-[2px]
-        "
-      />
-
-      {/* top row: icon + label */}
-      <div className="relative flex items-center gap-2">
-        <span className="flex h-5 w-5 items-center justify-center">
-          {platform === "instagram" && <InstagramIcon />}
-          {platform === "youtube" && <YouTubeIcon />}
-          {platform === "tiktok" && <TikTokIcon />}
-          {platform === "substack" && <SubstackIcon />}
-        </span>
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
-          {label}
-        </span>
-      </div>
-
-      {/* sublabel */}
-      <span className="relative mt-2 text-[11px] text-slate-400">
-        {sublabel}
-      </span>
-
-      {/* bottom tag */}
-      <span className="relative mt-3 text-[10px] font-medium uppercase tracking-[0.22em] text-[#FF9A5E] opacity-80 group-hover:opacity-100">
-        Open
-      </span>
-    </Link>
-  );
-}
-
-  
-
-

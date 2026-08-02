@@ -32,10 +32,10 @@ export default function AboutPage() {
             Gavin Stephens makes{" "}
             <span className="italic text-accent-orange">Park Bench Ontology</span> —
             stand-up, video essays, and theatre that take apart the ideological
-            scaffolding of ordinary life and don&apos;t reassemble it. Polite
-            liberalism, market virtue, and nationalist performance art don&apos;t
-            survive contact with the material. He works from working-class Caribbean
-            roots and a blue-collar read on the intellectual: Afro-Absurdism and
+            scaffolding of ordinary life and doesn&apos;t reassemble it. Polite
+            liberalism, market virtue, and nationalist performance art doesn&apos;t
+            survive contact with the material. His art is informed by working-class Caribbean
+            roots and his blue-collar read on the intellectual: Afro-Absurdism and
             Ontological Collapse, comedy that unpacks the symbol and implicates the
             room watching it.
           </p>

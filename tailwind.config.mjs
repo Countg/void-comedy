@@ -8,10 +8,10 @@ const config = {
     extend: {
       colors: {
         "sunset-orange-100": "#fff1f0",
-        "sunset-orange-500": "#FF6719",
+        "sunset-orange-500": "#ff5b3d",
         "sunset-orange-900": "#c94c43",
-        "accent-orange": "#FF6719",
-        "dark-indigo": "#1e1b4b",
+        "accent-orange": "#ff5b3d",
+        "dark-indigo": "#0a0a0a",
       },
       fontFamily: {
         mono: ["IBM Plex Mono", "monospace"],

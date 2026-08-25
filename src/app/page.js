@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 import ClientLanding from './components/clientLanding';
 import showDates from './lib/showDates';
 import getLatestEpisodes from './lib/latestEpisode';
-import SocialSidebar from './components/sidebar';
+import { fetchSubstackPosts } from './lib/latestSubstack';
 
 // Async metadata function
 export async function generateMetadata() {
@@ -42,11 +42,12 @@ export async function generateMetadata() {
 export default async function LandingPage() {
     let shows = [];
 let latestEpisodesData = { episode: null, image: null };
+let latestFeed = [];
 
 
 
 try {
-  [shows, latestEpisodesData] = await Promise.all([
+  [shows, latestEpisodesData, latestFeed] = await Promise.all([
     showDates().catch((err) => {
       console.error("Failed to fetch shows:", err);
       return [];
@@ -55,8 +56,10 @@ try {
       console.error("Failed to fetch latest episode:", err);
       return { episode: null, image: null };
     }),
-    
-   
+    fetchSubstackPosts().catch((err) => {
+      console.error("Failed to fetch Substack posts:", err);
+      return [];
+    }),
   ]);
 } catch (err) {
   console.error("Unexpected fetch error:", err);
@@ -65,8 +68,7 @@ try {
 
   return (
     <>
-    <SocialSidebar/>
-    <ClientLanding shows={shows} latestEpisode={latestEpisodesData.episode} />
+    <ClientLanding shows={shows} latestEpisode={latestEpisodesData.episode} zine={latestFeed} />
     </>
   );
 }

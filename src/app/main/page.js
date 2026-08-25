@@ -3,7 +3,6 @@ import ClientMain from "../components/clientMain";
 import showDates from "@/lib/showDates";
 import getLatestEpisodes from '@/lib/latestEpisode';
 import { fetchSubstackPosts } from "@/lib/latestSubstack";
-import SocialSidebar from "@/components/sidebar";
 
 
 export async function generateMetadata() {
@@ -63,7 +62,6 @@ try {
 
   return (
    <>
-     <SocialSidebar />
        <ClientMain
       shows={shows}
       latestEpisode={latestEpisodesData.episode}

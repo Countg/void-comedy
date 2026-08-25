@@ -26,55 +26,55 @@ export default function FindingsLink() {
       <style>{`
         @keyframes tv-glitch {
           0%   { 
-            color: #e85d04;
+            color: #ff5b3d;
             text-shadow: 2px 0 #ff003c, -2px 0 #00ffcc;
             transform: translateX(-3px) skewX(-1deg);
             clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
           }
           10%  { 
-            color: #e85d04;
+            color: #ff5b3d;
             text-shadow: -3px 0 #ff003c, 3px 0 #00ffcc;
             transform: translateX(3px) skewX(1deg);
             clip-path: polygon(0 30%, 100% 30%, 100% 100%, 0 100%);
           }
           20%  { 
-            color: #f07030;
+            color: #ff7a5f;
             text-shadow: 1px 0 #ff003c, -1px 0 #00ffcc;
             transform: translateX(-1px);
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           }
           30%  { 
-            color: #e85d04;
+            color: #ff5b3d;
             text-shadow: -4px 0 #ff003c, 4px 0 #00ffcc;
             transform: translateX(4px) skewX(-2deg);
             clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
           }
           40%  { 
-            color: #e85d04;
+            color: #ff5b3d;
             text-shadow: 3px 0 #ff003c, -3px 0 #00ffcc;
             transform: translateX(-2px);
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           }
           50%  { 
-            color: #ff6a1a;
+            color: #ff7a5f;
             text-shadow: -2px 0 #ff003c, 2px 0 #00ffcc;
             transform: translateX(2px) skewX(1deg);
             clip-path: polygon(0 10%, 100% 10%, 100% 60%, 0 60%);
           }
           60%  { 
-            color: #e85d04;
+            color: #ff5b3d;
             text-shadow: 4px 0 #ff003c, -4px 0 #00ffcc;
             transform: translateX(-4px);
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           }
           70%  { 
-            color: #e85d04;
+            color: #ff5b3d;
             text-shadow: -1px 0 #ff003c, 1px 0 #00ffcc;
             transform: translateX(1px) skewX(-1deg);
             clip-path: polygon(0 40%, 100% 40%, 100% 80%, 0 80%);
           }
           85%  { 
-            color: #e85d04;
+            color: #ff5b3d;
             text-shadow: 2px 0 #ff003c, -2px 0 #00ffcc;
             transform: translateX(-1px);
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -105,7 +105,7 @@ export default function FindingsLink() {
   style={{ 
     textDecorationLine: "underline",
     textDecorationStyle: "dotted",
-    textDecorationColor: "#e85d04",
+    textDecorationColor: "#ff5b3d",
     textUnderlineOffset: "4px",
   }}
 >

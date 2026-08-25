@@ -1,129 +1,112 @@
-import { motion } from "framer-motion";
+'use client';
+
 import Image from "next/image";
-import CardContainer from "./CardContainer";
-import { platforms } from "../lib/projectInfo"; // Adjust the import path as needed
-import PlayerWrapper from "./Audio";
+import { useRef, useState } from "react";
 
+const HOSTS = [
+  { label: "Spotify", url: "https://open.spotify.com/show/4VXk56ZMQABGFxlu6aBuUv" },
+  { label: "Apple",   url: "https://podcasts.apple.com/us/podcast/uncolonized/id698940847" },
+  { label: "YouTube", url: "https://www.youtube.com/@ParkBenchOntology" },
+  { label: "RSS",     url: "https://shows.acast.com/uncolonized" },
+];
 
-// Utility to strip everything after (and including) 'Follow & Support'
-function cleanDescription(desc) {
-  if (!desc) return '';
-  const idx = desc.search(/🔗?\s*Follow\s*&?\s*Support/i);
-  if (idx !== -1) {
-    return desc.slice(0, idx).trim();
-  }
-  return desc;
-}
+export default function PodcastCard({ title, imageSrc, audioSrc }) {
+  const audioRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [duration, setDuration] = useState(null);
 
-export default function PodcastCard({ title, subtitle, description, imageSrc, acastLink, date, spotifyLink, appleLink, youtubeLink, episode, audioSrc }) {
+  // "Episode 47: Foo" -> 47
+  const epNumber = title?.match(/^Episode\s*(\d+)/i)?.[1] ?? null;
+  const epTitle = title?.replace(/^Episode\s*\d+\s*[:\-–]?\s*/i, "") ?? null;
 
-const shouldGlitch = /ontology|voids|meme|Existential/i.test(title);
-return (
- <motion.div
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
->
-  <CardContainer>
-    <section id="podcast" className="mb-16">
-  {/* Subtitle / Tagline */}
-  <div className="text-accent-orange font-bold text-lg sm:text-xl mb-3 font-mono tracking-wider uppercase">
-    Now Streaming
-  </div>
+  const toggle = () => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (el.paused) {
+      el.play();
+      setPlaying(true);
+    } else {
+      el.pause();
+      setPlaying(false);
+    }
+  };
 
-  {/* Podcast Title (with optional glitch) */}
+  const metaTop = [
+    epNumber ? `Ep. ${epNumber}` : epTitle,
+    duration ? `${duration} min` : null,
+  ]
+    .filter(Boolean)
+    .join(" — ");
 
-  <div className="relative max-w-full overflow-hidden">
- <h2
-    className={`text-3xl sm:text-5xl font-bold tracking-tight text-white mb-6 font-mono ${
-      shouldGlitch ? 'glitch' : ''
-    }`}
-    style={{ minHeight: '3rem' }} 
-  >
-    <span data-text='Park Bench Ontology'>Park Bench Ontology</span>
-  </h2>
-</div>
-  
+  return (
+    <section id="podcast" className="pbo-section">
+      <div className="pbo-kicker">Now Streaming</div>
 
-  {/* Cover + Description Layout */}
-  <div className="flex flex-col md:flex-row md:items-start gap-8 mb-10">
-    {/* Podcast Image */}
-    <div className="flex-shrink-0">
-      <Image
-        src={imageSrc}
-        alt="Podcast Cover"
-        width={300}
-        height={300}
-        as='image'
-        className="rounded-xl shadow-lg"
-      />
-    </div>
+      <div className="pbo-hero">
+        <div>
+          <h1>
+            Park Bench <span className="accent">Ontology</span>
+          </h1>
 
-    {/* /* Description */} 
-      <div className="text-base sm:text-lg text-white/90 leading-relaxed font-mono">
-        <p className="mb-4">
-        <strong className="text-white">Park Bench Ontology</strong> is a low-stakes existential crisis disguised as a comedy podcast for people quietly losing faith in the script of modern life. Each week, comedian and writer Gavin Stephens dissects the absurd machinery of capitalism and culture — from sitcoms to wealth inequality, Baudrillard to people who park in bike lanes — exposing the broken myths, invisible rules, and slow-motion collapse we all pretend isn’t happening.
-        </p>
-        <strong className="text-accent-orange">{title?.replace(/^Episode\s*\d+\s*[:\-–]?\s*/i, '') ?? "Untitled Episode"}</strong>
-        
-        <br />
-        <p>
-        {description
-          ? cleanDescription(description.replace(/Hosted on Acast\. See acast\.com\/privacy for more information\./gi, ''))
-          : "Explore the essence of meme life, symbolic drift, and collective dread through a Black absurdist lens."}
-        </p>
+          <p>
+            Lo-fi ontological satire, comedy of collapse, and meme-theory dread — recorded
+            live, edited barely. New episode out now on every host site.
+          </p>
+
+          <div className="pbo-playrow">
+            <button
+              type="button"
+              onClick={toggle}
+              disabled={!audioSrc}
+              className="pbo-playbtn"
+              aria-label={playing ? "Pause episode" : "Play episode"}
+            >
+              {playing ? "❚❚" : "▶"}
+            </button>
+
+            <div className="pbo-playmeta">
+              <b>{metaTop || "New Episode"}</b>
+              listen on your host of choice below
+            </div>
+          </div>
+
+          <div className="pbo-hosts">
+            {HOSTS.map(({ label, url }) => (
+              <a key={label} href={url} target="_blank" rel="noopener noreferrer">
+                {label}
+              </a>
+            ))}
+          </div>
+
+          {audioSrc && (
+            <audio
+              ref={audioRef}
+              src={audioSrc}
+              preload="metadata"
+              onLoadedMetadata={(e) => {
+                const d = e.currentTarget.duration;
+                if (d && isFinite(d)) setDuration(Math.round(d / 60));
+              }}
+              onEnded={() => setPlaying(false)}
+              onPause={() => setPlaying(false)}
+              onPlay={() => setPlaying(true)}
+            />
+          )}
+        </div>
+
+        <div className="pbo-frame">
+          <Image
+            src="/images/podcastBanner.jpg"
+            alt="Park Bench Ontology"
+            width={1672}
+            height={941}
+            priority
+          />
+          <div className="pbo-frame-tag">
+            Park Bench Ontology — Waveform / Bench, no text overlay
+          </div>
+        </div>
       </div>
-      </div>
-
-      {/* Episode Info */}
-  <div className="flex items-center gap-3 text-accent-orange font-mono mb-8">
-    <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="11" stroke="#FF6719" strokeWidth="2" />
-      <polygon points="10,8 16,12 10,16" fill="#FF6719" />
-    </svg>
-    <span className="text-white text-sm tracking-wide">
-      {date}
-    </span>
-  </div>
- 
-
-  {/* Listen On Platforms */}
-  <div className="mb-10">
-    <h3 className="text-white font-bold text-base mb-3 font-mono uppercase tracking-wider">
-      Listen on:
-    </h3>
-    <div className="flex flex-wrap gap-4">
-      {platforms.map(({ name, url, icon: Icon }) => (
-        <a
-          key={name}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-md text-white hover:bg-white/20 transition text-sm font-semibold"
-        >
-          <Icon className="text-accent-orange text-xl" />
-          {name}
-        </a>
-      ))}
-    </div>
-  </div>
-     {/* Spotify Embed */}
-  <div className="mt-6">
-<PlayerWrapper
-        audioUrl={audioSrc}
-      
-      />
-  </div>
-
-
-</section>
-
-  </CardContainer>
-</motion.div>
-
-
-      
+    </section>
   );
 }
-
-

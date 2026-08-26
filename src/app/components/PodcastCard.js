@@ -7,7 +7,7 @@ const HOSTS = [
   { label: "Spotify", url: "https://open.spotify.com/show/4VXk56ZMQABGFxlu6aBuUv" },
   { label: "Apple",   url: "https://podcasts.apple.com/us/podcast/uncolonized/id698940847" },
   { label: "YouTube", url: "https://www.youtube.com/@ParkBenchOntology" },
-  { label: "RSS",     url: "https://shows.acast.com/uncolonized" },
+  { label: "RSS",     url: "https://api.substack.com/feed/podcast/3347012.rss" },
 ];
 
 export default function PodcastCard({ title, imageSrc, audioSrc }) {

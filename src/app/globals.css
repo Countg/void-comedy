@@ -831,3 +831,75 @@ textarea.pbo-input { height: 120px; resize: vertical; }
   .pbo-hosts a:active,
   .pbo-tourrow .tix:active { transform: none; }
 }
+
+/* =========================================================
+   PBO CONNECT — /connect link-in-bio page.
+   Same tokens as the main site, narrow single-column build.
+   ========================================================= */
+
+.pbo-c-main { min-height: 100vh; background: var(--pbo-bg); color: var(--pbo-fg); }
+.pbo-c-wrap {
+  position: relative; z-index: 1;
+  max-width: 440px; margin: 0 auto;
+  padding: 48px 22px 64px;
+  display: flex; flex-direction: column; gap: 30px;
+}
+
+.pbo-c-eyebrow {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--pbo-dim); border-left: 2px solid var(--pbo-accent); padding-left: 10px;
+}
+
+.pbo-c-head {
+  font-family: var(--pbo-display); font-weight: 900;
+  font-size: clamp(28px, 8vw, 38px); line-height: 1.04; letter-spacing: -0.01em;
+  margin: 0; color: var(--pbo-fg); text-wrap: balance;
+}
+.pbo-c-reason { color: var(--pbo-dim); font-size: 13.5px; line-height: 1.7; margin: 0; }
+
+/* signup — the one thing this page exists for */
+.pbo-c-form {
+  display: flex; flex-direction: column; gap: 10px;
+  border: 1px solid var(--pbo-line); padding: 16px; margin: 2px 0 0;
+}
+.pbo-c-micro { font-size: 11px; color: var(--pbo-faint); line-height: 1.6; margin: 0; }
+
+.pbo-c-rule { border: none; border-top: 1px solid var(--pbo-line); margin: 0; }
+.pbo-c-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pbo-accent); margin: 0 0 14px; }
+
+/* shows */
+.pbo-c-show {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  border-bottom: 1px solid var(--pbo-line); padding: 12px 0; font-size: 12px;
+}
+.pbo-c-show:last-child { border-bottom: none; }
+.pbo-c-show .when { color: var(--pbo-fg); font-weight: 700; }
+.pbo-c-show .where { color: var(--pbo-dim); }
+.pbo-c-show a {
+  flex-shrink: 0; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid var(--pbo-accent); color: var(--pbo-accent); padding: 6px 10px;
+  text-decoration: none; transition: background 0.15s, color 0.15s, transform 0.2s ease;
+}
+.pbo-c-show a:hover { background: var(--pbo-accent); color: #0a0a0a; transform: translateY(-2px); }
+
+/* socials — hairline grid, same language as the footer strip */
+.pbo-c-socials {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--pbo-line); border: 1px solid var(--pbo-line);
+}
+.pbo-c-socials a {
+  background: var(--pbo-bg); text-align: center; padding: 14px 8px;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--pbo-dim); text-decoration: none; transition: color 0.15s, background 0.15s;
+}
+.pbo-c-socials a:hover { color: var(--pbo-accent); background: #111; }
+
+.pbo-c-bio { font-size: 12px; line-height: 1.7; color: var(--pbo-dim); margin: 0; }
+.pbo-c-manifesto { font-size: 11.5px; line-height: 1.7; color: var(--pbo-faint); font-style: italic; margin: 0; }
+.pbo-c-mail { color: var(--pbo-accent); font-size: 13px; text-decoration: none; }
+.pbo-c-mail:hover { text-decoration: underline; }
+.pbo-c-back {
+  text-align: center; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--pbo-faint); text-decoration: none; padding-top: 4px;
+}
+.pbo-c-back:hover { color: var(--pbo-accent); }

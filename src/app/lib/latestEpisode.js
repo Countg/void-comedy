@@ -1,12 +1,30 @@
-import axios from 'axios';
+import Parser from 'rss-parser';
 import he from 'he';
+
+// Substack publishes the podcast feed directly — no third-party proxy needed.
+const FEED_URL =
+  process.env.BASE_URL_DIRECT ||
+  'https://api.substack.com/feed/podcast/3347012.rss';
 
 let cachedEpisodeData = null;
 let lastFetchTime = 0;
 const CACHE_TTL = 1000 * 60 * 5; // 5 minutes
 
+const parser = new Parser({
+  timeout: 8000,
+  customFields: {
+    feed: [['itunes:image', 'itunesImage', { keepArray: false }]],
+    item: [['itunes:duration', 'duration'], ['itunes:episode', 'episodeNumber']],
+  },
+});
+
+const removeTags = (str) => {
+  if (!str) return '';
+  return he.decode(str.replace(/(<([^>]+)>)/gi, '')).trim();
+};
+
 const getLatestEpisodes = async () => {
-  // Use cached result in dev to prevent excessive fetching
+  // Reuse cached result in dev to avoid refetching on every render
   if (process.env.NODE_ENV === 'development') {
     const now = Date.now();
     if (cachedEpisodeData && now - lastFetchTime < CACHE_TTL) {
@@ -15,37 +33,43 @@ const getLatestEpisodes = async () => {
   }
 
   try {
-    const res = await axios.get(process.env.BASE_URL);
+    const feed = await parser.parseURL(FEED_URL);
 
-    if (!res.data || !Array.isArray(res.data.items)) {
-      console.error('API response does not contain a valid episodes array');
-      return { image: null, episodes: [] };
+    if (!feed || !Array.isArray(feed.items)) {
+      console.error('Podcast feed did not contain a valid items array');
+      return { image: null, episode: null };
     }
 
-    let episodes = res.data.items;
-    let podImage = res.data.feed?.thumbnail || null;
+    const podImage =
+      feed.itunesImage?.$?.href ||
+      feed.image?.url ||
+      feed.itunes?.image ||
+      null;
 
-    const removeTags = (str) => {
-      if (!str) return '';
-      return he.decode(str.replace(/(<([^>]+)>)/gi, ''));
-    };
-
-    let latestEpisode = episodes[0];
-    if (!latestEpisode) {
-      return { image: podImage, episodes: null };
+    const latest = feed.items[0];
+    if (!latest) {
+      return { image: podImage, episode: null };
     }
 
-    let cleanedEpisode = {
-      ...latestEpisode,
-      title: removeTags(latestEpisode.title),
-      description: removeTags(latestEpisode.description),
-      pubDate: new Date(latestEpisode.pubDate).toLocaleDateString(),
-      link: latestEpisode.link || 'https://shows.acast.com/uncolonized',
+    const episode = {
+      ...latest,
+      title: removeTags(latest.title),
+      description: removeTags(
+        latest.content || latest['content:encoded'] || latest.contentSnippet
+      ),
+      pubDate: latest.pubDate
+        ? new Date(latest.pubDate).toLocaleDateString()
+        : 'TBD',
+      link: latest.link || 'https://parkbenchontology.substack.com',
+      // rss-parser exposes enclosure.url; the rest of the app reads enclosure.link
+      enclosure: {
+        ...latest.enclosure,
+        link: latest.enclosure?.url || latest.enclosure?.link || null,
+      },
     };
 
-    const episodeData = { image: podImage, episode: cleanedEpisode };
+    const episodeData = { image: podImage, episode };
 
-    // Cache only in dev mode
     if (process.env.NODE_ENV === 'development') {
       cachedEpisodeData = episodeData;
       lastFetchTime = Date.now();
@@ -53,8 +77,8 @@ const getLatestEpisodes = async () => {
 
     return episodeData;
   } catch (error) {
-    console.error('Error fetching episodes:', error);
-    return { image: null, episode: [] };
+    console.error('Error fetching episodes:', error?.message || error);
+    return { image: null, episode: null };
   }
 };
 

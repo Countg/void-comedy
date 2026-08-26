@@ -1,5 +1,4 @@
 import Link from "next/link";
-import GlitchBackground from "./glitchBackground";
 
 // ============================================================================
 // EDIT ME — everything you'll ever want to change lives in this one object.
@@ -57,49 +56,17 @@ export default function ConnectPage({ shows = [] }) {
   const subscribeAction = `https://${CONFIG.substackDomain}/api/v1/free?nojs=true`;
 
   return (
-    <main
-      className="
-        min-h-screen
-        bg-[#131427]
-        bg-[radial-gradient(circle_at_top,_#1e1b4b_0%,_#131427_45%,_#050510_100%)]
-        text-slate-50
-      "
-    >
-      {/* --- FIXED BACKGROUND LAYERS --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 glitch-bg" />
-        <div className="absolute inset-0 scanlines" />
-        <GlitchBackground />
-      </div>
-
-      {/* --- BACKDROP FILTER --- */}
-      <div className="fixed inset-0 z-20 pointer-events-none backdrop-blur-xl backdrop-brightness-50 opacity-20" />
-
-      {/* --- CONTENT --- */}
-      <div className="relative mx-auto flex w-full max-w-sm flex-col gap-8 px-5 py-12 sm:py-16">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-400/80">
-          {CONFIG.eyebrow}
-        </p>
+    <main className="pbo-c-main">
+      <div className="pbo-c-wrap">
+        <p className="pbo-c-eyebrow">{CONFIG.eyebrow}</p>
 
         {/* ============ PRIMARY: headline + signup ============ */}
-        <section className="flex flex-col gap-4">
-          <h1 className="text-[32px] font-bold leading-[1.15] tracking-tight text-balance sm:text-4xl">
-            {CONFIG.headline}
-          </h1>
+        <section style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <h1 className="pbo-c-head">{CONFIG.headline}</h1>
 
-          <p className="max-w-[34ch] text-[15px] leading-relaxed text-slate-300">
-            {CONFIG.reasonLine}
-          </p>
+          <p className="pbo-c-reason">{CONFIG.reasonLine}</p>
 
-          <form
-            action={subscribeAction}
-            method="post"
-            className="
-              mt-1 flex flex-col gap-3 rounded-2xl border border-[#FF6719]/45
-              bg-gradient-to-b from-[#FF6719]/10 to-[#FF6719]/[0.02]
-              p-3.5 shadow-[0_20px_45px_rgba(255,103,25,0.12)]
-            "
-          >
+          <form action={subscribeAction} method="post" className="pbo-c-form">
             <input
               type="email"
               name="email"
@@ -108,121 +75,87 @@ export default function ConnectPage({ shows = [] }) {
               aria-label="Email address"
               autoComplete="email"
               inputMode="email"
-              className="
-                w-full rounded-xl border border-slate-500/40 bg-[#050510]/70
-                px-4 py-3.5 text-[15px] text-slate-50 placeholder:text-slate-500
-                outline-none transition focus-visible:border-[#FF6719]
-                focus-visible:ring-2 focus-visible:ring-[#FF6719]/50
-              "
+              className="pbo-input"
+              style={{ marginBottom: 0 }}
             />
-            <button
-              type="submit"
-              className="
-                w-full rounded-xl bg-[#FF6719] px-4 py-3.5 text-[15px] font-bold
-                tracking-wide text-[#1a0d00] transition hover:bg-[#ff7e3c]
-                focus-visible:outline focus-visible:outline-2
-                focus-visible:outline-offset-2 focus-visible:outline-[#FF6719]
-              "
-            >
+            <button type="submit" className="pbo-btn">
               {CONFIG.buttonText}
             </button>
           </form>
 
-          <p className="text-center text-xs text-slate-500">{CONFIG.microcopy}</p>
+          <p className="pbo-c-micro">{CONFIG.microcopy}</p>
         </section>
 
         {shows.length > 0 && (
           <>
-            <hr className="border-slate-700/50" />
-            <div className="flex flex-col gap-2">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-slate-600">
-                Live shows
-              </p>
-              <ul className="flex flex-col gap-4">
-                {shows.map((show, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center justify-between gap-3 text-xs text-slate-500"
-                  >
-                    <span>
-                      <span className="font-medium text-[#FFB583]">
-                        {show.datetime
-                          ? new Date(show.datetime).toLocaleDateString("en-US", {
-                              month: "short",
-                              day: "numeric",
-                            })
-                          : "TBA"}
-                      </span>{" "}
+            <hr className="pbo-c-rule" />
+            <div>
+              <p className="pbo-c-label">Live Shows</p>
+              {shows.map((show, i) => (
+                <div key={i} className="pbo-c-show">
+                  <span>
+                    <span className="when">
+                      {show.datetime
+                        ? new Date(show.datetime).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                          })
+                        : "TBA"}
+                    </span>{" "}
+                    <span className="where">
                       — {show.venue.city}, {show.venue.name}
                     </span>
-                    {show.url && (
-                      <Link
-                        href={show.url}
-                        className="shrink-0 rounded-full border border-[#FF6719]/50 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#FFB583] transition hover:border-[#FF6719] hover:bg-[#FF6719]/10"
-                      >
-                        Tickets
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
+                  </span>
+                  {show.url && (
+                    <Link href={show.url} target="_blank" rel="noopener noreferrer">
+                      Tickets
+                    </Link>
+                  )}
+                </div>
+              ))}
             </div>
           </>
         )}
 
-        <hr className="border-slate-700/50" />
+        <hr className="pbo-c-rule" />
 
         {/* ============ SECONDARY: socials ============ */}
-        <nav
-          aria-label="Social links"
-          className="flex flex-wrap gap-x-5 gap-y-2 text-[13px]"
-        >
+        <nav aria-label="Social links" className="pbo-c-socials">
           {CONFIG.socials.map((social) => (
             <Link
               key={social.label}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 underline decoration-slate-600 underline-offset-4 transition hover:text-[#FF9A5E] hover:decoration-[#FF9A5E]"
             >
               {social.label}
             </Link>
           ))}
         </nav>
 
-        <hr className="border-slate-700/50" />
-
         {/* ============ TERTIARY: bio ============ */}
-        <p className="text-xs leading-relaxed text-slate-500">{CONFIG.bio}</p>
+        <p className="pbo-c-bio">{CONFIG.bio}</p>
 
         {/* ============ QUIET TAIL: booking, manifesto ============ */}
-        <hr className="border-slate-800/60" />
+        <hr className="pbo-c-rule" />
 
-        <div className="flex flex-col gap-1">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-slate-600">
-            Booking &amp; collabs
-          </p>
-          <Link
-            href={`mailto:${CONFIG.bookingEmail}`}
-            className="text-xs text-[#FF9A5E] underline decoration-slate-700 underline-offset-2 hover:text-[#ff7e3c]"
-          >
+        <div>
+          <p className="pbo-c-label">Booking &amp; Collabs</p>
+          <Link href={`mailto:${CONFIG.bookingEmail}`} className="pbo-c-mail">
             {CONFIG.bookingEmail}
           </Link>
         </div>
 
-        <p className="text-[11px] italic leading-relaxed text-slate-600">
-          {CONFIG.manifesto}
-        </p>
+        <p className="pbo-c-manifesto">{CONFIG.manifesto}</p>
 
-        <p className="text-center text-[11px] text-slate-600">
-          <Link
-            href="/"
-            className="transition-colors duration-200 hover:text-[#FF6719]"
-          >
-            Return to the main site
-          </Link>
-        </p>
+        <Link href="/" className="pbo-c-back">
+          Return to the main site
+        </Link>
       </div>
+
+      {/* --- VHS overlays, same as the main site --- */}
+      <div className="pbo-mvhs pbo-mscan" aria-hidden="true" />
+      <div className="pbo-mvhs pbo-mstatic" aria-hidden="true" />
     </main>
   );
 }

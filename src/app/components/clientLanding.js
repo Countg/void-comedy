@@ -309,8 +309,7 @@ export default function ClientLanding({ shows: initialShows, latestEpisode, zine
             </h1>
 
             <div className="pbo-meta">
-              Comedy for a dying interface. Lo-fi ontological satire, comedy of
-              collapse, and meme-theory dread.
+              Comedy for a dying interface. Lo-fi ontological satire, to laugh through the collapse.
               <br />
               <br />
               <span className="pbo-findings">

@@ -15,10 +15,10 @@ export async function generateMetadata() {
 
   return {
     title: 'PARK BENCH // ONTOLOGY - HOME',
-    description: 'Gavin Stephens: lo-fi ontological satire, comedy of collapse, and meme-theory dread.',
+    description: 'Gavin Stephens:  Comedy for a dying interface. Lo-fi ontological satire, to laugh through the collapse.',
     openGraph: {
       title: 'Park Bench Ontology – Gavin Stephens',
-      description: 'Gavin Stephens: lo-fi ontological satire, comedy of collapse, and meme-theory dread.',
+      description: 'Gavin Stephens:  Comedy for a dying interface. Lo-fi ontological satire, to laugh through the collapse.',
       url: 'https://gavinstephens.ca',
       type: 'website',
       images: [{ url: ogUrl, width: 1200, height: 630, alt: latestEpisode?.title || 'Park Bench Ontology' }],
@@ -26,7 +26,7 @@ export async function generateMetadata() {
     twitter: {
       card: 'summary_large_image',
       title: 'Park Bench Ontology – Gavin Stephens',
-      description: 'Gavin Stephens: lo-fi ontological satire, comedy of collapse, and meme-theory dread.',
+      description: 'Gavin Stephens:  Comedy for a dying interface. Lo-fi ontological satire, to laugh through the collapse.',
       images: [ogUrl],
     },
   };

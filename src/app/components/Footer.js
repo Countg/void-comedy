@@ -35,10 +35,10 @@ export default function Footer(){
       </div>
 
       <div className="pbo-social">
-        <a href="https://bsky.app/profile/gavinbstephens.substack.com" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        <a href="https://bsky.app/profile/parkbenchontology.substack.com" target="_blank" rel="noopener noreferrer">Bluesky</a>
         <a href="https://www.tiktok.com/@parkbenchontology" target="_blank" rel="noopener noreferrer">TikTok</a>
         <a href="https://instagram.com/countgavin" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://gavinbstephens.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
+        <a href="https://parkbenchontology.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
         <a href="https://www.youtube.com/@ParkBenchOntology" target="_blank" rel="noopener noreferrer">YouTube</a>
       </div>
 

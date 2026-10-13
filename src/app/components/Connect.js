@@ -26,6 +26,11 @@ const CONFIG = {
   microcopy:
     "No spam, no sales funnel — just an email when there's something new. Unsubscribe in one click.",
 
+  // The "go read it without subscribing" escape hatch, shown directly under the
+  // microcopy. This is for someone not ready to hand over an email yet.
+  readLinkText: "Read the archive first →",
+  readLinkHref: "https://parkbenchontology.substack.com/archive",
+
   // Your name / show name, shown tiny at the very top.
   eyebrow: "Park Bench Ontology",
 
@@ -84,6 +89,15 @@ export default function ConnectPage({ shows = [] }) {
           </form>
 
           <p className="pbo-c-micro">{CONFIG.microcopy}</p>
+
+          <Link
+            href={CONFIG.readLinkHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pbo-c-read"
+          >
+            {CONFIG.readLinkText}
+          </Link>
         </section>
 
         {shows.length > 0 && (

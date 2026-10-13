@@ -27,12 +27,12 @@ export default function SocialSidebar() {
         },
       
             {
-          href: 'https://gavinbstephens.substack.com/',
+          href: 'https://parkbenchontology.substack.com/',
           icon: <SiSubstack />,
           label: 'Dispatch From The Simulation',
         },
         {
-          href: 'https://bsky.app/profile/gavinbstephens.substack.com',
+          href: 'https://bsky.app/profile/parkbenchontology.substack.com',
           icon: <SiBluesky />,
           label: 'BlueSky',
         },
